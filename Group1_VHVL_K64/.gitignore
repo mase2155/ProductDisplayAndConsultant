@@ -14,3 +14,13 @@ obj/
 appsettings*.Secret.json
 *.env
 *.pem
+
+
+# Cấu hình môi trường và thông tin nhạy cảm thực tế
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+
+# File hệ thống
+.DS_Store
+Thumbs.db

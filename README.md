@@ -1,4 +1,4 @@
-# Website trưng bày nội thất Hoàng Hoan 
+# Website trưng bày nội thất Hoàng Hoan
 
 ## Tác Giả : Nhóm 1 - VHVL -K64
 
@@ -26,5 +26,5 @@ Dự án tập trung xây dựng website trưng bày và tư vấn cho đơn v�
 * Backend Core : C# + ASP.NET Core MVC
 * Frontend Core: HTML5, CSS3
 * Libraries: JavaScript , jQuery, Bootstrap , Slick
-* Tools: Visual Studio , Git , Github , Trello , Jira
+* Tools: Visual Studio , Git , Github , Microsoft To Do , Jira
 

@@ -23,8 +23,8 @@ Dự án tập trung xây dựng website trưng bày và tư vấn cho đơn v�
 
 ### Công nghệ sử dụng
 
-* Backend Core : C# + ASP.NET Core MVC
+* Backend Core : Vanilla Javascript 
 * Frontend Core: HTML5, CSS3
-* Libraries: JavaScript , jQuery, Bootstrap , Slick
-* Tools: Visual Studio , Git , Github , Microsoft To Do , Jira
+* Libraries: jQuery, Bootstrap , Slick
+* Tools: Visual Studio , Git , Github , Microsoft To Do , Postman , NodeJs
 

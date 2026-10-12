@@ -1,0 +1,86 @@
+#content {
+   background-color: #f5f5f5;
+   padding-bottom: 4.5rem;
+}
+.map-link-bar {
+    margin-top: 10rem;
+    padding-left: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+.map-link-bar ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.map-link-bar li {
+    display: flex;
+    align-items: center;
+}
+
+.map-link-bar li a, 
+.map-link-bar li span {
+    text-decoration: none;
+    color: #b8926a; 
+}
+
+.map-link-bar li:not(:last-child)::after {
+    content: ">";
+    margin: 0 10px; 
+    color: #333;    
+}
+
+.map-link-bar li a:hover {
+    color: #2c2e53;
+}
+.main-content {
+    background-color: #fff;
+    padding-left: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+}
+.main-content .row .left-content h4 {
+    text-align: justify;
+    max-width: 50rem;
+    color: #b8926a;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Gotham-Ultra";
+}
+.main-content .left-content p {
+    max-width: 50rem;
+    text-align: justify;
+}
+.main-content .left-content img {
+    width: 50rem;
+}
+.main-content .right-content img {
+    width: 100%;
+    object-fit: cover;
+}
+.right-content .title p {
+    color: #2c2e53;
+    text-transform: uppercase;
+    position: relative;
+}
+.right-content .title p::after {
+    content: '';
+    height: 0.2rem;
+    width: 4rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #bd945f;
+}
+.right-content .line {
+    padding-bottom: 1rem;
+}
+.right-content .col-md-7 a {
+    color: #2c2e53;
+    display: inline-block;
+    text-align: justify;
+    max-width: 12rem;
+    text-transform: uppercase;
+}

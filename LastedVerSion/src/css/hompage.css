@@ -1,0 +1,642 @@
+#home-banner {
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 3rem;
+    position: relative;
+}
+
+#home-banner img {
+    display: block;
+}
+
+.home-banner_content {
+    padding-left: 2rem;
+    position: absolute;
+    top: 40%;
+    left: 16%;
+    transform: translateY(-50%);
+}
+
+.home-banner_content h1 {
+    font-family: 'Gotham-Ultra';
+    text-transform: uppercase;
+    color: #2c2e53;
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.home-banner_content span {
+    font-family: 'Gotham-Ultra';
+    color: #bd945f;
+}
+
+.home-banner_content p {
+    max-width: 34rem;
+    margin-bottom: 0.75rem;
+    text-align: justify;
+}
+
+.home-banner_btn {
+    text-transform: uppercase;
+    font-family: 'Gotham-Ultra';
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #bd945f;
+    border: 0.2rem solid #bd945f;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: 0.5s; 
+}
+.home-banner_btn:hover{
+    background-color: #fff;
+    color: #bd945f;
+}
+
+#home-category {
+    background-color: #f5f5f5;
+}
+
+#home-category .list-category {
+    background-color: #fff;
+    position: relative;
+    top: -3.5rem;
+    padding: 0rem 3rem;
+}
+
+#home-category .list-category .col-md-3 a>img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: contain;
+    margin: 0 auto;
+    padding-bottom: 0.5rem;
+}
+
+#home-category .col-md-3 {
+    align-items: center;
+    text-align: center;
+}
+
+#home-category .list-category .row .col-md-3 {
+    padding: 2.5rem 0 3rem 0;
+}
+
+#home-category .list-category .row a>p {
+    color: #2c2e53;
+    margin-top: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Gotham-Ultra';
+}
+#home-category .list-category .row a>p:hover{
+    color: #bd945f;
+}
+
+.product-slick {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+
+.product-slick h2 {
+    text-align: center;
+    position: relative;
+    font-family: 'Gotham-Ultra';
+    text-transform: uppercase;
+    color: #2c2e53;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem
+}
+
+.product-slick h2::after {
+    content: '';
+    height: 0.5rem;
+    width: 10rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #bd945f;
+}
+
+.product-slick .product-box {
+    width: 16rem;
+    margin: 0 1rem;
+    padding-top: 3.5rem;
+}
+
+.product-slick .product-list {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 74rem;
+}
+
+.product-slick .product-content {
+    padding: 1rem 0 0.5rem 0;
+}
+
+.product-slick .product-content>h3 {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.product-slick .product-content .product-star {
+    color: #bd945f;
+    margin-bottom: 0;
+}
+
+.product-slick .product-content .product-details {
+    color: #666666;
+    margin-bottom: 0;
+}
+
+.product-slick .product-list .slick-arrow {
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    border: none;
+    background-color: #bd945f;
+    color: #fff;
+    top: 30%;
+}
+
+.product-slick .product-list .slick-prev {
+    right: calc(100% + 10px);
+}
+
+.product-slick .product-list .slick-next {
+    left: calc(100% + 10px);
+}
+
+#home-about_us {
+    position: relative;
+    height: 81rem;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.8)),
+        url("../img/trang_chu/banner-about_us.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#home-about_us .banner {
+    display: none;
+}
+
+#home-about_us .container {
+    padding-top: 3rem;
+    padding-bottom: 9rem;
+    position: relative;
+    z-index: 1;
+}
+
+#home-about_us .content {
+    color: #fff;
+    margin-bottom: 6rem;
+}
+
+#home-about_us h2 {
+    text-align: center;
+    position: relative;
+    margin-bottom: 5rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Gotham-Ultra';
+    padding-bottom: 0.5rem;
+
+}
+
+#home-about_us h2::after {
+    content: '';
+    height: 0.8rem;
+    width: 10rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #bd945f;
+}
+
+#home-about_us .content {
+    padding-top: 8rem;
+}
+
+.about-us-top-left-img {
+    padding-left: 4.25rem;
+    width: 35rem;
+    height: 20rem;
+}
+
+#home-about_us .contentOfTop_Right h3 {
+    text-transform: uppercase;
+}
+
+#home-about_us .contentOfTop_Right h3>span {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Gotham-Ultra';
+    text-align: justify;
+}
+
+#home-about_us .contentOfTop_Right p {
+    padding-top: 0.45rem;
+    max-width: 35rem;
+    text-align: justify;
+    font-size: 0.9rem;
+}
+
+#home-about_us .contentOfTop_Right p>span {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Gotham-Ultra';
+}
+
+.about-us-bottom .row .bg-white {
+    padding: 1.5rem 0 1.25rem 2rem;
+}
+
+.about-us-top-right-img {
+    position: relative;
+    display: block;
+    padding-right: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.about-us-top-right-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;  
+    display: block;
+    transition: transform 0.4s ease; 
+}
+
+.about-us-top-right-img .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.view-more {
+    color: #fff;
+    font-family: 'Gotham-Medium';
+}
+
+.about-us-top-right-img:hover .overlay {
+    opacity: 1;
+    visibility: visible;
+}
+.about-us-top-left-img {
+    width: 100%;
+    height: 100%;
+}
+
+.about-us-top-left-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.commit-card {
+    max-width: 35.75rem;
+}
+
+.commit-card-1 {
+    max-width: 35.75rem;
+    margin-left: 4.25rem;
+}
+
+.commit-card-1 .about-us-bottom-content {
+    padding-left: 2.75rem;
+}
+
+.commit-card-1 .about-us-bottom-content>h3 {
+    color: #bd945f;
+    font-family: 'Gotham-Ultra';
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+
+.commit-card-2 {
+    max-width: 35.75rem;
+}
+
+.commit-card-2 .about-us-bottom-content {
+    padding-left: 2.75rem;
+}
+
+.commit-card-2 .about-us-bottom-content>h3 {
+    color: #bd945f;
+    font-family: 'Gotham-Ultra';
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.commit-card-3 {
+    max-width: 35.75rem;
+    margin-left: 4.25rem;
+}
+
+.commit-card-3 .about-us-bottom-content {
+    padding-left: 2.75rem;
+}
+
+.commit-card-3 .about-us-bottom-content>h3 {
+    color: #bd945f;
+    font-family: 'Gotham-Ultra';
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.commit-card .about-us-bottom-content {
+    padding-left: 2rem;
+}
+
+.commit-card .about-us-bottom-content>h3 {
+    color: #bd945f;
+    font-family: 'Gotham-Ultra';
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.commit-card .about-us-bottom-content>p {
+    font-size: 1rem;
+    color: #000;
+}
+
+#home-news {
+    position: relative;
+    isolation: isolate;
+}
+
+#home-news .news h2 {
+    text-align: center;
+    position: relative;
+    font-family: 'Gotham-Ultra';
+    text-transform: uppercase;
+    padding-top: 6rem;
+    font-weight: bold;
+    color: #2c2e53;
+}
+
+#home-news .news h2::after {
+    content: '';
+    height: 0.5rem;
+    width: 10rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #bd945f;
+}
+
+
+#home-news .row {
+    display: flex;
+    margin-top: 4rem;
+    padding-bottom: 2.5rem;
+    margin-left: 3.5rem;
+}
+#home-news .news-left {
+    cursor: pointer;
+    overflow: hidden; 
+    position: relative;
+    width: 40rem; 
+    height: 32rem; 
+}
+#home-news .news-left img{
+    transition: transform 0.5s ease;
+}
+#home-news .news-left img:hover{
+    transform: scale(1.1); 
+}
+.news-left {
+    position: relative;
+}
+
+.news-left img {
+    height: 32rem;
+    width: 40rem;
+    object-fit: cover; 
+}
+
+.news-left .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 108.5%;
+    height: 30%;
+    background-color: #bd945f;
+    display: flex;
+    align-items: flex-end;
+}
+
+.news-left .overlay .overlay-content {
+    padding: 1rem 2rem 0 2rem;
+}
+
+.news-left .overlay .overlay-content h4 {
+    font-family: 'Gotham-Medium';
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.news-left .overlay .overlay-content p {
+    font-family: 'Gotham-Thin';
+    font-weight: 900;
+    font-size: 0.8rem;
+    text-align: justify;
+    max-width: 36rem;
+}
+
+.news-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 3rem;
+}
+.news-right .img-news-small{
+    overflow: hidden;
+    cursor: pointer;
+}
+.news-right img{
+    transition: transform 0.5s ease; 
+    object-fit: cover;
+}
+.news-right img:hover {
+    transform: scale(1.1); 
+}
+
+.news-item {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.img-news-small img {
+    width: 10rem;
+    height: 10rem;
+    padding-bottom: 1rem;
+}
+
+#home-news .news-right .news-item .item-text a {
+    font-size: 1.15rem;
+    color: #bd945f;
+    max-width: 17rem;
+}
+
+#home-news .news-right .news-item .item-text p {
+    font-family: 'Gotham-Thin';
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-align: justify;
+    max-width: 19rem;
+}
+
+#home-news .news-right .news-more a {
+    font-family: 'Gotham-Medium';
+    color: #bd945f;
+    margin-top: 30px;
+    text-transform: uppercase;
+}
+
+#partner {
+    height: 300px;
+}
+.logo-partner {
+    width: 45%;
+}
+
+
+#home-partner .title h2 {
+    text-align: center;
+    position: relative;
+    font-family: 'Gotham-Ultra';
+    text-transform: uppercase;
+    margin-top: 115px;
+    font-weight: bold;
+    color: #2c2e53;
+}
+
+#home-partner .title h2::after {
+    content: '';
+    height: 8px;
+    width: 162px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #bd945f;
+}
+
+#home-partner .img-logo-partner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-left: 4rem;
+    max-width: 77rem;
+}
+
+#home-partner .img-logo-partner .logo-partner {
+    padding-top: 3.5rem;
+    padding-right: 4rem ;
+    padding-bottom: 8rem;
+}
+#info-contact {
+    background-image: url(../img/trang_chu/banner_info-contact.jpg);
+    height: 18rem;
+    position: relative;
+}
+
+#info-contact .row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    text-align: left;
+}
+
+#info-contact .content-info-contact {
+    position: relative;
+    padding-bottom: 1rem;
+    text-align: left;
+    margin-left: 0;
+}
+#info-contact .form-info-contact {
+    padding-bottom: 1rem;
+}
+#info-contact .container .row .content-info-contact h3 {
+    color: #fff;
+    margin-top: 5rem;
+    font-family: 'Gotham-Medium';
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    padding-bottom: 1.2rem;
+}
+
+#info-contact .container .row .content-info-contact h3 span {
+    font-weight: bold;
+    font-family: 'Gotham-Ultra';
+    font-size: 26px;
+}
+
+#info-contact .content-info-contact {
+    text-align: left !important;
+    display: block !important;
+    padding-left: 13rem;
+    padding-bottom: 6.5rem;
+}
+
+#info-contact .content-info-contact h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 10rem;
+    height: 0.5rem;
+    background-color: #fff;
+}
+#info-contact .form-info-contact {
+    padding-bottom: 6.5rem;
+    padding-left: 2.5rem;
+}
+#info-contact .form-info-contact h4 {
+    color: #fff;
+    font-size: 1rem;
+}
+#info-contact .form-info-contact input {
+    width: 25rem;
+    height: 3.5rem;
+    padding-left: 1rem;
+}
+
+#info-contact .form-info-contact button {
+    width: 7rem;
+    height: 3.5rem;
+    background-color: #fff;
+    margin-left: 1.5rem;
+}
+
+.img-chair-decor {
+    position: absolute;
+    top: 0;
+    left: 2.2rem;
+    bottom: 3rem;
+    transform: translateY(-40%);
+}

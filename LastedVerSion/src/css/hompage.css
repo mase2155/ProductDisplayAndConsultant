@@ -558,85 +558,36 @@
     padding-right: 4rem ;
     padding-bottom: 8rem;
 }
+/* 1. Đặt mốc định vị cho section tổng */
 #info-contact {
-    background-image: url(../img/trang_chu/banner_info-contact.jpg);
-    height: 18rem;
     position: relative;
+    width: 100%;
+    min-height: 400px; /* Chiều cao cố định hoặc tối thiểu cho khung */
+    overflow: hidden;  /* Ẩn phần ảnh thừa ra ngoài */
 }
 
-#info-contact .row {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    text-align: left;
-}
-
-#info-contact .content-info-contact {
-    position: relative;
-    padding-bottom: 1rem;
-    text-align: left;
-    margin-left: 0;
-}
-#info-contact .form-info-contact {
-    padding-bottom: 1rem;
-}
-#info-contact .container .row .content-info-contact h3 {
-    color: #fff;
-    margin-top: 5rem;
-    font-family: 'Gotham-Medium';
-    display: inline-block;
-    position: relative;
-    text-align: left;
-    padding-bottom: 1.2rem;
-}
-
-#info-contact .container .row .content-info-contact h3 span {
-    font-weight: bold;
-    font-family: 'Gotham-Ultra';
-    font-size: 26px;
-}
-
-#info-contact .content-info-contact {
-    text-align: left !important;
-    display: block !important;
-    padding-left: 13rem;
-    padding-bottom: 6.5rem;
-}
-
-#info-contact .content-info-contact h3::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 10rem;
-    height: 0.5rem;
-    background-color: #fff;
-}
-#info-contact .form-info-contact {
-    padding-bottom: 6.5rem;
-    padding-left: 2.5rem;
-}
-#info-contact .form-info-contact h4 {
-    color: #fff;
-    font-size: 1rem;
-}
-#info-contact .form-info-contact input {
-    width: 25rem;
-    height: 3.5rem;
-    padding-left: 1rem;
-}
-
-#info-contact .form-info-contact button {
-    width: 7rem;
-    height: 3.5rem;
-    background-color: #fff;
-    margin-left: 1.5rem;
-}
-
-.img-chair-decor {
+/* 2. Cấu hình ảnh nền đứng yên và phủ kín section */
+#info-contact .image-info-contact {
     position: absolute;
     top: 0;
-    left: 2.2rem;
-    bottom: 3rem;
-    transform: translateY(-40%);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Nằm dưới cùng */
 }
+
+#info-contact .image-info-contact img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giữ ảnh đứng yên, vừa vặn khung mà không méo */
+    display: block;
+}
+
+/* 3. Khối chứa nội dung nằm đè lên ảnh */
+#info-contact .div-text {
+    position: relative;
+    z-index: 2; /* Nằm đè lên trên ảnh */
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+

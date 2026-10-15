@@ -1,10 +1,10 @@
-# Website trưng bày nội thất Hoàng Hoan
+# Website mua bán và giới thiệu nội thất Hoàng Hoan
 
 ## Tác Giả : Nhóm 1 - VHVL -K64
 
 ### 📝 Giới thiệu dự án
 
-Dự án tập trung xây dựng website trưng bày và tư vấn cho đơn vị cung cấp nội thất HOÀNGHOAN . Mục tiêu chính là cung cấp trải nghiệm xem sản phẩm trưng bày trực quan, tra cứu thông tin dịch vụ dễ dàng , tối ưu hóa tương tác người dùng và tư vấn về thông tin sản phẩm
+Dự án tập trung xây dựng website giới thiệu , tư vấn và cung cấp hệ thống bán sản phẩm cho đơn vị cung cấp nội thất HOÀNGHOAN . Mục tiêu chính là cung cấp trải nghiệm xem sản phẩm trưng bày trực quan, tra cứu thông tin dịch vụ dễ dàng , tối ưu hóa tương tác người dùng , tư vấn về thông tin sản phẩm 
 
 ### Vấn đề giải quyết
 
@@ -12,6 +12,10 @@ Dự án tập trung xây dựng website trưng bày và tư vấn cho đơn v�
 * Responsive : Hiển thị tối ưu trên đa thiết bị (Mobile, Tablet, Desktop) giúp tiếp cận người dùng mọi lúc mọi nơi.
 * Data Process : Xử lý render dữ liệu động linh hoạt thay vì fix cứng HTML.
 * Chatbot : Nhằm tư vấn thông tin về sản phẩm cho khách hàng
+
+
+
+
 
 ### Các tính năng đã hoàn thiện
 
@@ -23,8 +27,8 @@ Dự án tập trung xây dựng website trưng bày và tư vấn cho đơn v�
 
 ### Công nghệ sử dụng
 
-* Backend Core : Vanilla Javascript 
-* Frontend Core: HTML5, CSS3
-* Libraries: jQuery, Bootstrap , Slick
-* Tools: Visual Studio , Git , Github , Microsoft To Do , Postman , NodeJs
+* Backend Core : ASP .Net Core MVC , EntityFrameWork , Authentication & Authorization 
+* Frontend Core: HTML5, CSS3, JS
+* Libraries: jQuery, Bootstrap , Slick ,XPagedList
+* Tools: Visual Studio , Git , Github , Microsoft To Do , SQL Server Management Studio 2022 
 

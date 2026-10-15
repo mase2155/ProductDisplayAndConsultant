@@ -19,6 +19,14 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.30" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.30" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.23" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admins\Controllers\" />
+    <Folder Include="Areas\Admins\Data\" />
+    <Folder Include="Areas\Admins\Models\" />
+    <Folder Include="Areas\Admins\Views\" />
   </ItemGroup>
 
 </Project>

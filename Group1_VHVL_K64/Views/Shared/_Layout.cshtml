@@ -5,43 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Group1_VHVL_K64</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/font.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Group1_VHVL_K64.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css"
+          href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Group1_VHVL_K64</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+        <div class="header-nav">
+            <nav class="navbar navbar-expand-md">
+                <div class="container-fluid d-flex justify-content-between">
+                    <div class="header-logo">
+                        <a href=""><img src="~/img/trang_chu/logo.png" alt="logo"></a>
+                    </div>
+                    <button class="navbar-toggler" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown"
+                            aria-controls="navbarNavDropdown"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end"
+                         id="navbarNavDropdown">
+                        <ul class="navbar-nav text-center">
+                            <li class="nav-item">
+                                <a class="text-uppercase text-black nav-link" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-uppercase text-black nav-link" asp-area="" asp-controller="Home" asp-action="About">Giới thiệu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-uppercase text-black nav-link" asp-area="" asp-controller="Product" asp-action="Index">Sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-uppercase text-black nav-link" asp-area="" asp-controller="News" asp-action="Index">
+                                    Tin tức
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-uppercase text-black nav-link" asp-area="" asp-controller="Partner" asp-action="Index">
+                                    Đối tác
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-uppercase text-black nav-link" asp-area="" asp-controller="Contact" asp-action="Index">
+                                    Liên hệ
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="user-login-icon">
+                        <a asp-area="Identity" asp-page="/Account/Login"
+                           title="Đăng nhập">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
+    <footer class="info-company">
         <div class="container">
-            &copy; 2026 - Group1_VHVL_K64 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="contact">
+                <div><h3>Thông Tin Chung</h3></div>
+                <div><h2>CÔNG TY TNHH HOÀNG HOAN</h2></div>
+                <div class="phoneAndMail">
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="#">055.949.9585</a>
+                </div>
+                <div class="phoneAndMail">
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="#">dev.hung.utc@gmail.com</a>
+                </div>
+                <div class="phoneAndMail">
+                    <i class="fa-solid fa-location-dot"></i> Số 132 Phố Cầu Giấy , Nghĩa Đô , Hà Nội
+                </div>
+            </div>
+
+            <div class="about-us-footer">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <a asp-area="" asp-controller="Home" asp-action="About">Giới Thiệu</a>
+                <a asp-area="" asp-controller="Product" asp-action="Index">Sản Phẩm</a>
+                <a asp-area="" asp-controller="Partner" asp-action="Index">Đối Tác</a>
+                <a asp-area="" asp-controller="Contact" asp-action="Index">Liên Hệ</a>
+            </div>
+
+            <div class="connect-us">
+                <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
+                <div class="social">
+                    <a href="#"><img src="~/img/trang_chu/icon_fb_pro.jpg" alt="fb"></a>
+                    <a href="#"><img src="~/img/trang_chu/icon_zalo_pro.jpg" alt="zalo"></a>
+                    <a href="#"><img src="~/img/trang_chu/icon_email_pro.jpg" alt="email"></a>
+                </div>
+                <div class="logo-bo-cong-thuong">
+                    <img class="w-60" src="~/img/trang_chu/logo-bo-cong-thuong.jpg" alt="logo-bo-cong-thuong">
+                </div>
+            </div>
         </div>
     </footer>
+
+    <section id="caption">
+        <div class="author">
+            <p>Created by <span>Le Dinh Hung</span> | FB  : <a href="https://www.facebook.com/hungmaseco2k5" target="_blank">Lê Đình Hùng ( Mase )</a></p>
+        </div>
+    </section>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

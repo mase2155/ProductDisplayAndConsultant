@@ -17,7 +17,7 @@ namespace Group1_VHVL_K64.Controllers
         {
             return View();
         }
-        public IActionResult Index()
+        public IActionResult About()
         {
             return View();
         }
@@ -25,7 +25,10 @@ namespace Group1_VHVL_K64.Controllers
         {
             return View();
         }
-
+        public IActionResult Partner()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

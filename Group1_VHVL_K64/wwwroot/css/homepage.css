@@ -56,6 +56,7 @@
         background-color: #fff;
         color: #bd945f;
     }
+
 #home-category {
     background-color: #f5f5f5;
 }
@@ -95,3 +96,82 @@
         #home-category .list-category .row a > p:hover {
             color: #bd945f;
         }
+
+.product-slick {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+
+    .product-slick h2 {
+        text-align: center;
+        position: relative;
+        font-family: 'Gotham-Ultra';
+        text-transform: uppercase;
+        color: #2c2e53;
+        padding-top: 1rem;
+        padding-bottom: 0.5rem
+    }
+
+        .product-slick h2::after {
+            content: '';
+            height: 0.5rem;
+            width: 10rem;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #bd945f;
+        }
+
+    .product-slick .product-box {
+        width: 16rem;
+        margin: 0 1rem;
+        padding-top: 3.5rem;
+    }
+
+    .product-slick .product-list {
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        width: 74rem;
+    }
+
+    .product-slick .product-content {
+        padding: 1rem 0 0.5rem 0;
+    }
+
+        .product-slick .product-content > h3 {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .product-slick .product-content .product-star {
+            color: #bd945f;
+            margin-bottom: 0;
+        }
+
+        .product-slick .product-content .product-details {
+            color: #666666;
+            margin-bottom: 0;
+        }
+
+    .product-slick .product-list .slick-arrow {
+        position: absolute;
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+        border: none;
+        background-color: #bd945f;
+        color: #fff;
+        top: 40%;
+    }
+
+    .product-slick .product-list .slick-prev {
+        right: calc(100% + 10px);
+    }
+
+    .product-slick .product-list .slick-next {
+        left: calc(100% + 10px);
+    }

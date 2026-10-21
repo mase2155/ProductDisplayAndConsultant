@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/Group1_VHVL_K64.styles.css" asp-append-version="true" />
     <link rel="stylesheet" type="text/css"
           href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <header>
@@ -68,11 +69,7 @@
             </nav>
         </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        @RenderBody()
     <footer class="info-company">
         <div class="container">
             <div class="contact">

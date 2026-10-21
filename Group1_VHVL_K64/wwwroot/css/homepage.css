@@ -175,3 +175,140 @@
     .product-slick .product-list .slick-next {
         left: calc(100% + 10px);
     }
+#home-about_us {
+    position: relative;
+    height: 81rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8)), url("../img/trang_chu/banner-about_us.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    #home-about_us .banner {
+        display: none;
+    }
+
+    #home-about_us .container {
+        padding-top: 3rem;
+        padding-bottom: 9rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    #home-about_us .content {
+        color: #fff;
+        margin-bottom: 6rem;
+    }
+
+    #home-about_us h2 {
+        text-align: center;
+        position: relative;
+        margin-bottom: 5rem;
+        color: #fff;
+        text-transform: uppercase;
+        font-family: 'Gotham-Ultra';
+        padding-bottom: 0.5rem;
+    }
+
+        #home-about_us h2::after {
+            content: '';
+            height: 0.8rem;
+            width: 10rem;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #bd945f;
+        }
+
+    #home-about_us .content {
+        padding-top: 8rem;
+    }
+
+.about-us-top-left-img {
+    padding-left: 4.25rem;
+    width: 35rem;
+    height: 20rem;
+}
+
+#home-about_us .contentOfTop_Right h3 {
+    text-transform: uppercase;
+}
+
+    #home-about_us .contentOfTop_Right h3 > span {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: 'Gotham-Ultra';
+        text-align: justify;
+    }
+
+#home-about_us .contentOfTop_Right p {
+    padding-top: 0.45rem;
+    max-width: 35rem;
+    text-align: justify;
+    font-size: 0.9rem;
+}
+
+    #home-about_us .contentOfTop_Right p > span {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: 'Gotham-Ultra';
+    }
+
+.about-us-bottom .row .bg-white {
+    padding: 1.5rem 0 1.25rem 2rem;
+}
+
+.about-us-top-right-img {
+    position: relative;
+    display: block;
+    padding-right: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+    .about-us-top-right-img img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+    }
+
+    .about-us-top-right-img .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+
+.view-more {
+    color: #fff;
+    font-family: 'Gotham-Medium';
+}
+
+.about-us-top-right-img:hover .overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.about-us-top-left-img {
+    width: 100%;
+    height: 100%;
+}
+
+    .about-us-top-left-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }

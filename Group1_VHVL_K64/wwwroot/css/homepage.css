@@ -1,0 +1,58 @@
+﻿#home-banner {
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 3rem;
+    position: relative;
+}
+
+    #home-banner img {
+        display: block;
+    }
+
+.home-banner_content {
+    padding-left: 2rem;
+    position: absolute;
+    top: 40%;
+    left: 16%;
+    transform: translateY(-50%);
+}
+
+    .home-banner_content h1 {
+        font-family: 'Gotham-Ultra';
+        text-transform: uppercase;
+        color: #2c2e53;
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .home-banner_content span {
+        font-family: 'Gotham-Ultra';
+        color: #bd945f;
+    }
+
+    .home-banner_content p {
+        max-width: 34rem;
+        margin-bottom: 0.75rem;
+        text-align: justify;
+    }
+
+.home-banner_btn {
+    text-transform: uppercase;
+    font-family: 'Gotham-Ultra';
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #bd945f;
+    border: 0.2rem solid #bd945f;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+    .home-banner_btn:hover {
+        background-color: #fff;
+        color: #bd945f;
+    }

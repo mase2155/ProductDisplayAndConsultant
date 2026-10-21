@@ -1,4 +1,33 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang Chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<section id="home-banner">
+    <div class="img-banner">
+        <img src="img/trang_chu/banner.jpg" alt="banner">
+    </div>
+    <div class="home-banner_content">
+        <div class="container">
+            <h1>
+                thế giới nội thất số 1 việt nam <br><span>
+                    hoàng
+                    hoan
+                </span>
+            </h1>
+            <p>
+                Sứ mệnh của chúng tôi là kết hợp hài hòa giữa ý tưởng và
+                mong
+                muốn của khách hàng, đem lại những phút giây thư giãn
+                tuyệt
+                vời bên gia đình và những người thân yêu.
+            </p>
+            <a class="home-banner_btn" href="lien_he.html">
+                liên hệ
+                ngay
+            </a>
+        </div>
+    </div>
+</section>
+@section Styles {
+    <link rel="stylesheet" href="~/css/homepage.css" />
+}

@@ -1,5 +1,506 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+	ViewData["Title"] = "Sản Phẩm";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="banner">
+    <div class="banner-item active">
+        <img src="~/img/san_pham/banner1.jpg" alt="banner1">
+        <div class="banner-btn-click">
+            <a asp-controller="Contact" asp-action="Index">mua ngay</a>
+        </div>
+    </div>
+
+    <div class="banner-item">
+        <img src="~/img/san_pham/banner2.png" alt="banner2">
+    </div>
+
+    <button class="nav-btn prev" id="prevBtn">&#10094;</button>
+    <button class="nav-btn next" id="nextBtn">&#10095;</button>
+
+    <div class="dots-container">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+    </div>
+</section>
+<section id="content">
+    <div class="container">
+        <!-- Phòng Khách -->
+        <div class="table-product-first">
+            <div class="title">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>Phòng Khách</h2>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">Xem tất cả</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-product row mb-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_khach/phongkhach_img1.jpg" alt="phongkhach_img1">
+                        <h3>Bàn Uống Nước</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_khach/phongkhach_img2.jpg" alt="phongkhach_img2">
+                        <h3>Bàn Uống Nước 2</h3>
+                        <div class="details">(Size vừa , nâu vân gỗ)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            3.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_khach/phongkhach_img3.jpg" alt="phongkhach_img3">
+                        <h3>Kệ TV</h3>
+                        <div class="details">(4 ngăn , gỗ lim)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_khach/phongkhach_img4.jpg" alt="phongkhach_img4">
+                        <h3>Kệ để đồ</h3>
+                        <div class="details">(4 ngăn ,trắng gỗ )</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            2.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Phòng ngủ -->
+        <div class="table-product">
+            <div class="title">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>Phòng Ngủ</h2>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">Xem tất cả</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-product row mb-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_ngu/phongngu_img1.jpg" alt="phongngu_img1">
+                        <h3>Giường châu âu</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_ngu/phongngu_img2.jpg" alt="phongngu_img2">
+                        <h3>giường gỗ</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            3.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_ngu/phongngu_img3.jpg" alt="phongngu_img3">
+                        <h3>kệ đầu giường</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_ngu/phongngu_img4.jpg" alt="phongngu_img4">
+                        <h3>tủ quần áo</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Phòng Bếp -->
+        <div class="table-product">
+            <div class="title">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>Phòng Bếp</h2>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">Xem tất cả</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-product row mb-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_bep/phongbep_img1.jpg" alt="phongbep_img1">
+                        <h3>Bàn ăn 6</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_bep/phongbep_img2.jpg" alt="phongbep_img2">
+                        <h3>bàn trà </h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            3.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_bep/phongbep_img3.jpg" alt="phongbep_img3">
+                        <h3>bàn ăn 4</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_bep/phongbep_img4.jpg" alt="phongbep_img4">
+                        <h3>Bàn ăn 8</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.499.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Phòng Tắm -->
+        <div class="table-product">
+            <div class="title">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>Phòng Tắm</h2>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">Xem tất cả</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-product row mb-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_tam/phongtam_img1.jpg" alt="phongtam_img1">
+                        <h3>Bồn rửa mặt</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_tam/phongtam_img2.jpg" alt="phongtam_img2">
+                        <h3>Bồn rửa tay</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            3.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_tam/phongtam_img3.jpg" alt="phongtam_img3">
+                        <h3>Bồn rửa 2</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/phong_tam/phongtam_img4.jpg" alt="phongtam_img4">
+                        <h3>Tủ âm tường</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.499.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Trẻ em -->
+        <div class="table-product">
+            <div class="title">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>Trẻ em </h2>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">Xem tất cả</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-product row mb-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/tre_em/treem_img1.jpg" alt="treem_img1">
+                        <h3>Bàn học</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/tre_em/treem_img2.jpg" alt="treem_img2">
+                        <h3>Giường tầng</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/tre_em/treem_img3.jpg" alt="treem_img3">
+                        <h3>Giường tầng 2</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/tre_em/treem_img4.jpg" alt="treem_img4">
+                        <h3>Cũi trẻ em</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.499.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Văn Phòng -->
+        <div class="table-product">
+            <div class="title">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>Văn phòng</h2>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">Xem tất cả</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-product row mb-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/van_phong/vanphong_img1.jpg" alt="vanphong_img1">
+                        <h3>Ghế văn phòng</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/van_phong/vanphong_img2.jpg" alt="vanphong_img2">
+                        <h3>Bàn Làm việc</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            3.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/van_phong/vanphong_img3.jpg" alt="vanphong_img3">
+                        <h3>Bàn làm việc 2</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/van_phong/vanphong_img4.jpg" alt="vanphong_img4">
+                        <h3>Giá sách</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.499.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cầu Thang -->
+        <div class="table-product">
+            <div class="title">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>Cầu thang</h2>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">Xem tất cả</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-product row mb-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/cau_thang/cauthang_img1.jpg" alt="cauthang_img1">
+                        <h3>cầu thang 1</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/cau_thang/cauthang_img2.jpg" alt="cauthang_img2">
+                        <h3>cầu thang 2</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            3.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/cau_thang/cauthang_img3.jpg" alt="cauthang_img3">
+                        <h3>cầu thang 3</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/cau_thang/cauthang_img4.jpg" alt="cauthang_img4">
+                        <h3>cầu thang 4</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.499.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Trang trí  -->
+        <div class="table-product-end">
+            <div class="title">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>Trang Trí</h2>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">Xem tất cả</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-product row ">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/trang_tri/trangtri_img1.jpg" alt="trangtri_img1">
+                        <h3>Gương 1 </h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            8.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/trang_tri/trangtri_img2.jpg" alt="trangtri_img2">
+                        <h3>Gương 2</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            3.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/trang_tri/trangtri_img3.jpg" alt="trangtri_img3">
+                        <h3>ghế đôn</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.999.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="~/img/san_pham/imgOfContent/trang_tri/trangtri_img4.jpg" alt="trangtri_img4">
+                        <h3>đèn chùm</h3>
+                        <div class="details">(Size vừa , nâu đậm)</div>
+                        <div class="rateByStars">★★★★★ </div>
+                        <div class="price">
+                            12.499.000 VNĐ
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Styles {
+    <link rel="stylesheet" href="~/css/product.css" />
+}
+@section Scripts {
+    <script src="~/js/transferBanner_product.js"></script>
 }

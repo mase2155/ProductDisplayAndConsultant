@@ -95,3 +95,22 @@
     max-width: 12rem;
     text-transform: uppercase;
 }
+
+.left-content img,
+.right-content .line img {
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .left-content img:hover,
+    .right-content .line:hover img {
+        transform: translateY(-0.25rem) scale(1.03);
+        box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15);
+    }
+
+    .left-content img:hover,
+    .right-content .line:hover,
+    .right-content .line img:hover,
+    .right-content a:hover {
+        cursor: pointer;
+    }

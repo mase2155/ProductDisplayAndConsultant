@@ -19,26 +19,39 @@
                      alt="image-introduce">
             </div>
             <div class="content col-6">
-                <h3>liên hệ với chúng tôi</h3>
+                <h3>Liên hệ với chúng tôi</h3>
                 <div class="form-contact">
-                    <form action="javascript:void(0);" novalidate class="needs-validation">
+                    <form id="contactForm" action="javascript:void(0);" novalidate class="needs-validation">
+
                         <div class="mb-3">
                             <input type="text" name="Username" class="form-control" placeholder="Họ Và Tên" required>
+                            <!-- Hai thẻ chứa lỗi cho Họ và Tên -->
+                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Vui lòng nhập thông tin này.</div>
+                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Họ tên không hợp lệ.</div>
                         </div>
 
                         <div class="mb-3">
                             <input type="email" name="Email" class="form-control" placeholder="Email" required>
+                            <!-- Hai thẻ chứa lỗi cho Email -->
+                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Vui lòng nhập email.</div>
+                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Email không đúng định dạng (VD: example@domain.com).</div>
                         </div>
 
                         <div class="mb-3">
                             <input type="tel" name="PhoneNumber" class="form-control" placeholder="Số Điện Thoại" required>
+                            <!-- Hai thẻ chứa lỗi cho Số điện thoại -->
+                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Vui lòng nhập số điện thoại.</div>
+                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Số điện thoại không hợp lệ (Phải bắt đầu bằng 0 hoặc +84 và có 10 số).</div>
                         </div>
 
                         <div class="mb-3">
                             <input type="text" name="Content" class="form-control" placeholder="Nội Dung" required>
+                            <!-- Hai thẻ chứa lỗi cho Nội dung -->
+                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Vui lòng nhập nội dung.</div>
+                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Nội dung không hợp lệ.</div>
                         </div>
 
-                        <button type="submit" class="btn">Gửi</button>
+                        <button type="submit" class="btn btn-primary">Gửi</button>
                     </form>
                 </div>
             </div>

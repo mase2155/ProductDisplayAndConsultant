@@ -2,3 +2,84 @@
 	ViewData["Title"] = "Tin Tức";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<section id="content">
+    <div class="container">
+        <div class="map-link-bar">
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                </li>
+                <li>
+                    <a asp-controller="News" asp-action="Index">Tin Tức</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="row">
+                <div class="left-content col-md-8">
+                    <h4>
+                        ngất ngây với top 10 mẫu nội thất chung cư 1
+                        phòng ngủ đẹp nhất
+                    </h4>
+                    <p>
+                        Những căn hộ chung cư mini, có diện tích nhỏ
+                        ngày càng trở nên nên ưa chuộng hơn trong cuộc
+                        sống hiện đại với những ai có khoản kinh phí
+                        "hạn hẹp". Thiết kế nội thất chung cư 1 phòng
+                        ngủ chính là giải pháp tối ưu nhất để mang lại
+                        một không gian sống hoàn hảo và hiện đại.
+                    </p>
+                    <p>
+                        Vậy hãy cùng Nội thất Mạnh Hệ xem qua bài viết
+                        dưới đây để tham khảo thêm nhiều ý tưởng thiết
+                        kế nội thất chung cư 1 phòng ngủ thật ấm cúng và
+                        tiện nghi nhé!
+                    </p>
+                    <img src="~/img/tin_tuc/BAIVIET.jpg"
+                         alt="img-baiviet">
+                </div>
+                <div class="right-content col-md-4">
+                    <div class="title">
+                        <p>bài viết mới</p>
+                    </div>
+                    <div class="line row">
+                        <div class="col-md-5">
+                            <img src="~/img/tin_tuc/img1.jpg" alt="img1">
+                        </div>
+                        <div class="col-md-7">
+                            <a href="#">
+                                Trang trí phòng khách thêm năng
+                                động
+                            </a>
+                        </div>
+                    </div>
+                    <div class="line row">
+                        <div class="col-md-5">
+                            <img src="~/img/tin_tuc/img2.jpg" alt="img2">
+                        </div>
+                        <div class="col-md-7">
+                            <a href="#">
+                                Cách chọn sofa cho phòng khách
+                                thêm trang trọng
+                            </a>
+                        </div>
+                    </div>
+                    <div class="line row">
+                        <div class="col-md-5">
+                            <img src="~/img/tin_tuc/img3.jpg" alt="img3">
+                        </div>
+                        <div class="col-md-7">
+                            <a href="#">
+                                25+ mẫu giường ngủ hộc kéo cho
+                                phòng nhỏ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Styles {
+    <link rel="stylesheet" href="~/css/news.css" />
+}

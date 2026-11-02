@@ -69,6 +69,13 @@
                             </a>
                         </div>
                         <div class="user-login-icon">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-area="Admins" asp-controller="Dashboard" asp-action="Index"
+                                   class="me-3" title="Trang quản trị">
+                                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                                </a>
+                            }
                             <a asp-area="Identity" asp-page="/Account/Login"
                                title="Đăng nhập">
                                 <i class="fa-solid fa-user"></i>

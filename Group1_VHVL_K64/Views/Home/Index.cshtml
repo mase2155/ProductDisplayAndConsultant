@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeQuickContactViewModel
+@{
 	ViewData["Title"] = "Trang Chủ";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -585,9 +586,15 @@
 			</div>
 			<div class="form-info-contact col-12 col-md-6">
 				<h4>Thông tin liên hệ</h4>
-				<form asp-controller="Home" asp-action="Index" method="post" class="needs-validation">
-					<input type="text"
-						   placeholder="Email / Số điện thoại">
+				@if (TempData["HomeQuickContactSuccess"] != null)
+				{
+					<div class="alert alert-success mb-2">@TempData["HomeQuickContactSuccess"]</div>
+				}
+				<form asp-controller="Home" asp-action="Index" method="post">
+					@Html.AntiForgeryToken()
+					<div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+					<input asp-for="EmailOrPhone" type="text" placeholder="Email / Số điện thoại" />
+					<span asp-validation-for="EmailOrPhone" class="text-danger d-block mb-2"></span>
 					<button type="submit">Gửi</button>
 				</form>
 			</div>
@@ -680,4 +687,5 @@
 			});
 		}); 
 	</script>
+	@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

@@ -1,3 +1,4 @@
+using Group1_VHVL_K64.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Group1_VHVL_K64.Models
@@ -10,9 +11,9 @@ namespace Group1_VHVL_K64.Models
         public string CurrentPassword { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu mới.")]
-        [StringLength(100, MinimumLength = 6, ErrorMessage = "Mật khẩu mới tối thiểu 6 ký tự.")]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu mới")]
+        [RegularExpression(InputValidationPatterns.PasswordStrong, ErrorMessage = InputValidationPatterns.PasswordStrongErrorMessage)]
         public string NewPassword { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Vui lòng nhập lại mật khẩu mới.")]

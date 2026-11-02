@@ -20,6 +20,15 @@
 
 <section id="cart-page">
     <div class="container">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger mb-4">@TempData["ErrorMessage"]</div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mb-4">@TempData["SuccessMessage"]</div>
+        }
+
         @if (!Model.Any())
         {
             <div class="cart-empty">
@@ -126,9 +135,29 @@
                             </span>
                         </div>
 
-                        <button type="button" class="btn-cart-primary w-100" disabled title="Chức năng đang phát triển">
-                            Tiến hành thanh toán
-                        </button>
+                        @if (User.IsInRole("User"))
+                        {
+                            <form asp-action="Checkout" method="post" class="mb-2">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn-cart-primary w-100">
+                                    Tiến hành thanh toán
+                                </button>
+                            </form>
+                            <p class="cart-checkout-hint">Đơn sẽ gửi tới Admin với thông tin tài khoản và sản phẩm trong giỏ.</p>
+                        }
+                        else if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <p class="cart-checkout-hint text-muted">Tài khoản Admin không đặt hàng qua giỏ khách.</p>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account"
+                               asp-action="Login"
+                               asp-route-returnUrl="@Url.Action("Index", "Cart")"
+                               class="btn-cart-primary w-100 d-block text-center mb-2">
+                                Đăng nhập để thanh toán
+                            </a>
+                        }
 
                         <a asp-controller="Product" asp-action="Index" class="btn-cart-outline w-100">
                             Tiếp tục mua sắm

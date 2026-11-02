@@ -644,6 +644,26 @@ partner {
             margin-left: 1.5rem;
         }
 
+        /* Form liên hệ nhanh: ô nhập và nút Gửi cùng một hàng */
+        #info-contact .form-info-contact .home-quick-contact-inline {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
+        #info-contact .form-info-contact .home-quick-contact-summary {
+            font-size: 0.875rem;
+            margin-bottom: 0.35rem;
+            text-align: left;
+        }
+
+        #info-contact .form-info-contact .home-quick-contact-field-error {
+            display: block;
+            font-size: 0.875rem;
+            margin-top: 0.35rem;
+            text-align: left;
+        }
+
 .img-chair-decor {
     position: absolute;
     top: 0;

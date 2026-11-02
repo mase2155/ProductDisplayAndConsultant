@@ -590,12 +590,14 @@
 				{
 					<div class="alert alert-success mb-2">@TempData["HomeQuickContactSuccess"]</div>
 				}
-				<form asp-controller="Home" asp-action="Index" method="post">
+				<form asp-controller="Home" asp-action="Index" method="post" class="home-quick-contact-form">
 					@Html.AntiForgeryToken()
-					<div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
-					<input asp-for="EmailOrPhone" type="text" placeholder="Email / Số điện thoại" />
-					<span asp-validation-for="EmailOrPhone" class="text-danger d-block mb-2"></span>
-					<button type="submit">Gửi</button>
+					<div asp-validation-summary="ModelOnly" class="text-danger home-quick-contact-summary"></div>
+					<div class="home-quick-contact-inline">
+						<input asp-for="EmailOrPhone" type="text" placeholder="Email / Số điện thoại" />
+						<button type="submit">Gửi</button>
+					</div>
+					<span asp-validation-for="EmailOrPhone" class="text-danger home-quick-contact-field-error"></span>
 				</form>
 			</div>
 		</div>

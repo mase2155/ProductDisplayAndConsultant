@@ -40,6 +40,48 @@ namespace Group1_VHVL_K64.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register()
+        {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(new RegisterViewModel());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            CustomerRegistrationResult registerResult = await _accountAuthService.RegisterCustomerAsync(
+                model.Username,
+                model.FullName,
+                model.Password);
+
+            if (!registerResult.Success)
+            {
+                ModelState.AddModelError(nameof(RegisterViewModel.Username), registerResult.ErrorMessage);
+                return View(model);
+            }
+
+            TempData["SuccessMessage"] = "Đăng ký thành công. Vui lòng đăng nhập.";
+            return RedirectToAction(nameof(Login));
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

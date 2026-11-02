@@ -15,6 +15,13 @@ namespace Group1_VHVL_K64.Services
         public ClaimsPrincipal? Principal { get; set; }
     }
 
+    public class CustomerRegistrationResult
+    {
+        public bool Success { get; set; }
+
+        public string ErrorMessage { get; set; } = string.Empty;
+    }
+
     public class AccountAuthService
     {
         private readonly HoangHoanFurnitureContext _context;
@@ -82,6 +89,70 @@ namespace Group1_VHVL_K64.Services
                 customer.Email,
                 AppRoles.User,
                 AppClaims.AccountTypeCustomer);
+        }
+
+        /// <summary>
+        /// Đăng ký khách hàng mới (chỉ bảng Customers, role User).
+        /// </summary>
+        public async Task<CustomerRegistrationResult> RegisterCustomerAsync(
+            string email,
+            string fullName,
+            string password)
+        {
+            string trimmedEmail = email.Trim();
+            string normalizedEmail = trimmedEmail.ToLowerInvariant();
+            string trimmedFullName = fullName.Trim();
+
+            bool emailUsedByAdmin = await _context.Admins
+                .AnyAsync(a => a.Email.ToLower() == normalizedEmail);
+
+            if (emailUsedByAdmin)
+            {
+                return RegistrationFail("Tài khoản đã trùng lặp. Email này không thể đăng ký.");
+            }
+
+            bool emailUsedByCustomer = await _context.Customers
+                .AnyAsync(c => c.Email.ToLower() == normalizedEmail);
+
+            if (emailUsedByCustomer)
+            {
+                return RegistrationFail("Tài khoản đã trùng lặp. Email này đã được sử dụng.");
+            }
+
+            PasswordHasher<string> hasher = new PasswordHasher<string>();
+            string passwordHash = hasher.HashPassword(null!, password);
+
+            Customer newCustomer = new Customer
+            {
+                Email = trimmedEmail,
+                Fullname = trimmedFullName,
+                PlainPassword = password,
+                PasswordHash = passwordHash,
+                Phone = null,
+                ShippingAddress = null
+            };
+
+            _context.Customers.Add(newCustomer);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                return RegistrationFail("Tài khoản đã trùng lặp. Vui lòng dùng email khác.");
+            }
+
+            return new CustomerRegistrationResult { Success = true };
+        }
+
+        private static CustomerRegistrationResult RegistrationFail(string message)
+        {
+            return new CustomerRegistrationResult
+            {
+                Success = false,
+                ErrorMessage = message
+            };
         }
 
         private static AccountAuthResult Fail(string message)

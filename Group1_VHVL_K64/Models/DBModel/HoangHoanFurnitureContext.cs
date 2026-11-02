@@ -81,6 +81,10 @@ public partial class HoangHoanFurnitureContext : DbContext
             entity.Property(e => e.PlainPassword)
                 .HasMaxLength(255)
                 .IsUnicode(false);
+            entity.Property(e => e.Phone)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.ShippingAddress).HasMaxLength(500);
         });
 
         modelBuilder.Entity<CustomerInquiry>(entity =>

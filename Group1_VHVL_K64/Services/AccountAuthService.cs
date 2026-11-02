@@ -34,7 +34,7 @@ namespace Group1_VHVL_K64.Services
 
             if (admin != null)
             {
-                bool passwordOk = VerifyPassword(trimmedPassword, admin.PlainPassword, admin.PasswordHash);
+                bool passwordOk = VerifyPasswordInternal(trimmedPassword, admin.PlainPassword, admin.PasswordHash);
                 if (!passwordOk)
                 {
                     return Fail("Email hoặc mật khẩu không đúng.");
@@ -55,7 +55,7 @@ namespace Group1_VHVL_K64.Services
 
             if (customer != null)
             {
-                bool passwordOk = VerifyPassword(trimmedPassword, customer.PlainPassword, customer.PasswordHash);
+                bool passwordOk = VerifyPasswordInternal(trimmedPassword, customer.PlainPassword, customer.PasswordHash);
                 if (!passwordOk)
                 {
                     return Fail("Email hoặc mật khẩu không đúng.");
@@ -74,6 +74,16 @@ namespace Group1_VHVL_K64.Services
             return Fail("Email hoặc mật khẩu không đúng.");
         }
 
+        public ClaimsPrincipal CreateCustomerPrincipal(Customer customer)
+        {
+            return BuildPrincipal(
+                customer.Id,
+                customer.Fullname,
+                customer.Email,
+                AppRoles.User,
+                AppClaims.AccountTypeCustomer);
+        }
+
         private static AccountAuthResult Fail(string message)
         {
             return new AccountAuthResult
@@ -83,7 +93,15 @@ namespace Group1_VHVL_K64.Services
             };
         }
 
-        private static bool VerifyPassword(string inputPassword, string plainPassword, string? passwordHash)
+        public static bool VerifyPasswordForCustomer(
+            string inputPassword,
+            string plainPassword,
+            string? passwordHash)
+        {
+            return VerifyPasswordInternal(inputPassword, plainPassword, passwordHash);
+        }
+
+        private static bool VerifyPasswordInternal(string inputPassword, string plainPassword, string? passwordHash)
         {
             if (!string.IsNullOrWhiteSpace(passwordHash))
             {

@@ -78,6 +78,13 @@
                                         <i class="fa-solid fa-screwdriver-wrench"></i>
                                     </a>
                                 }
+                                @if (User.IsInRole("User"))
+                                {
+                                    <a asp-controller="Account" asp-action="Profile"
+                                       class="me-2" title="Tài khoản của tôi">
+                                        <i class="fa-solid fa-user"></i>
+                                    </a>
+                                }
                                 <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
                                     <button type="submit" class="btn btn-link p-0 border-0" title="Đăng xuất (@User.Identity.Name)">

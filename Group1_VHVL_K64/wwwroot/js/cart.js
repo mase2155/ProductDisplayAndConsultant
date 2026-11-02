@@ -80,9 +80,31 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     cartPage.addEventListener('click', function (event) {
+        const clearAllBtn = event.target.closest('.btn-clear-all-cart');
         const minusBtn = event.target.closest('.btn-qty-minus');
         const plusBtn = event.target.closest('.btn-qty-plus');
         const removeBtn = event.target.closest('.btn-remove-from-cart');
+
+        if (clearAllBtn) {
+            if (!confirm('Bạn có chắc muốn xóa toàn bộ sản phẩm trong giỏ hàng?')) {
+                return;
+            }
+
+            postForm('/Cart/ClearCart', {})
+                .then(function (data) {
+                    if (!data.success) {
+                        alert(data.message || 'Không xóa được giỏ hàng.');
+                        return;
+                    }
+
+                    updateCartBadge(0);
+                    window.location.reload();
+                })
+                .catch(function () {
+                    alert('Đã có lỗi xảy ra, vui lòng thử lại!');
+                });
+            return;
+        }
 
         if (minusBtn) {
             const productId = minusBtn.getAttribute('data-id');

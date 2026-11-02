@@ -122,6 +122,19 @@ namespace Group1_VHVL_K64.Controllers
             });
         }
 
+        [HttpPost]
+        public IActionResult ClearCart()
+        {
+            SessionCartHelper.ClearCart(HttpContext.Session);
+
+            return Json(new
+            {
+                success = true,
+                message = "Đã xóa toàn bộ sản phẩm trong giỏ hàng.",
+                totalCartItems = 0
+            });
+        }
+
         private async Task<List<CartLineDisplay>> BuildCartLinesFromSessionAsync()
         {
             List<CartSessionItem> cartItems = SessionCartHelper.GetCartItems(HttpContext.Session);

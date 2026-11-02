@@ -48,6 +48,28 @@
     padding: 3rem 0 5rem;
 }
 
+.cart-panel-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.75rem;
+}
+
+.btn-clear-all-cart {
+    background: #fff;
+    border: 1px solid #c0392b;
+    color: #c0392b;
+    padding: 0.5rem 1rem;
+    font-family: 'Gotham-Medium';
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+    .btn-clear-all-cart:hover {
+        background: #c0392b;
+        color: #fff;
+    }
+
 .cart-panel {
     background: #fff;
     border: 1px solid #e8e8e8;

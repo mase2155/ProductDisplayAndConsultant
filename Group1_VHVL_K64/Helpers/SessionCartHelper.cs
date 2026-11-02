@@ -42,5 +42,10 @@ namespace Group1_VHVL_K64.Helpers
 
             return total;
         }
+
+        public static void ClearCart(ISession session)
+        {
+            session.Remove(CartSessionKey);
+        }
     }
 }

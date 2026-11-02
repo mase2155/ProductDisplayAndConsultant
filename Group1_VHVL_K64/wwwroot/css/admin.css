@@ -5,6 +5,7 @@
  */
 
 #hoanghoan-admin {
+    font-family: 'Gotham-Medium', sans-serif;
     --hh-admin-primary: #2c2e53;
     --hh-admin-accent: #bd945f;
     --hh-admin-white: #ffffff;
@@ -93,6 +94,7 @@
 /* ========== Tiêu đề trang & nội dung ========== */
 #hoanghoan-admin .content-header h1 {
     color: var(--hh-admin-primary);
+    font-family: 'Gotham-Medium', sans-serif;
     font-weight: 700;
 }
 
@@ -163,8 +165,8 @@
     padding-top: 1rem;
     font-size: 1rem;
     color: #333;
-    font-family: 'Gotham Thin';
-    font-weight: bold;
+    font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
+    font-weight: normal;
 }
 
     .author span {

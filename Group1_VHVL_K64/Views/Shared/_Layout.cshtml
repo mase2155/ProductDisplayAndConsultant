@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css"
           href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" asp-append-version="true" />
     
+    <link rel="stylesheet" href="~/css/chatbot.css" asp-append-version="true" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -150,10 +151,14 @@
             <p>Created by <span>Le Dinh Hung</span> | FB  : <a href="https://www.facebook.com/hungmaseco2k5" target="_blank">Lê Đình Hùng ( Mase )</a></p>
         </div>
     </section>
+
+    <partial name="_ChatbotWidget" />
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/chatbot.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

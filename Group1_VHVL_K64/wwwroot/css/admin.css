@@ -6,6 +6,7 @@
 
 #hoanghoan-admin {
     font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1.05rem;
     --hh-admin-primary: #2c2e53;
     --hh-admin-accent: #bd945f;
     --hh-admin-white: #ffffff;
@@ -95,7 +96,18 @@
 #hoanghoan-admin .content-header h1 {
     color: var(--hh-admin-primary);
     font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1.75rem;
     font-weight: 700;
+}
+
+#hoanghoan-admin .card-title {
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1.2rem;
+}
+
+#hoanghoan-admin .table {
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1rem;
 }
 
 #hoanghoan-admin .content-wrapper {
@@ -135,7 +147,8 @@
 #hoanghoan-admin .main-footer {
     border-top: 1px solid #dee2e6;
     color: #666;
-    font-size: 0.9rem;
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1rem;
 }
 
 #hoanghoan-admin .main-footer .author {
@@ -163,10 +176,9 @@
     background: #fff;
     text-align: center;
     padding-top: 1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #333;
-    font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
-    font-weight: normal;
+    font-family: 'Gotham-Medium', sans-serif;
 }
 
     .author span {

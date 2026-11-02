@@ -37,8 +37,8 @@
     }
 
     .cart-banner-title p {
-        font-family: 'Gotham-Medium';
-        font-size: 1.1rem;
+        font-family: 'Gotham-Medium', sans-serif;
+        font-size: 1.25rem;
         opacity: 0.95;
     }
 
@@ -46,6 +46,8 @@
 #cart-page {
     background: #f5f5f5;
     padding: 3rem 0 5rem;
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1.05rem;
 }
 
 .cart-panel-toolbar {
@@ -60,7 +62,7 @@
     color: #c0392b;
     padding: 0.5rem 1rem;
     font-family: 'Gotham-Medium';
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
 }
@@ -86,7 +88,7 @@
     font-family: 'Gotham-Medium', sans-serif;
     color: #2c2e53;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
 }
 
 .cart-row {
@@ -126,7 +128,7 @@
 .cart-product-info h3 {
     font-family: 'Gotham-Medium', sans-serif;
     color: #2c2e53;
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
     line-height: 1.35;
@@ -136,7 +138,7 @@
     background: none;
     border: none;
     color: #888;
-    font-size: 0.875rem;
+    font-size: 1rem;
     padding: 0;
     cursor: pointer;
     font-family: 'Gotham-Medium';
@@ -209,7 +211,7 @@
         font-family: 'Gotham-Medium', sans-serif;
         color: #2c2e53;
         text-transform: uppercase;
-        font-size: 1.25rem;
+        font-size: 1.4rem;
         margin-bottom: 1.25rem;
         position: relative;
         padding-bottom: 0.75rem;
@@ -232,7 +234,7 @@
     margin-bottom: 0.75rem;
     font-family: 'Gotham-Medium';
     color: #444;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
 }
 
 .summary-divider {
@@ -242,7 +244,7 @@
 }
 
 .summary-total {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #2c2e53;
     font-weight: bold;
     margin-bottom: 1.25rem;
@@ -261,7 +263,7 @@
     color: #fff !important;
     text-transform: uppercase;
     font-family: 'Gotham-Medium', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     border: 2px solid #2c2e53;
     border-radius: 0;
     margin-bottom: 0.75rem;
@@ -287,7 +289,7 @@
     color: #2c2e53 !important;
     text-transform: uppercase;
     font-family: 'Gotham-Medium';
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     border: 1px solid #2c2e53;
 }
 
@@ -297,7 +299,7 @@
     }
 
 .cart-checkout-hint {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     color: #666;
     text-align: center;
     margin-bottom: 0.75rem;
@@ -336,7 +338,7 @@
 .checkout-items-title {
     font-family: 'Gotham-Medium', sans-serif;
     color: #2c2e53;
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
 }

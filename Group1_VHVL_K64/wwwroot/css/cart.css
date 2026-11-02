@@ -30,7 +30,7 @@
 }
 
     .cart-banner-title h1 {
-        font-family: 'Gotham-Ultra';
+        font-family: 'Gotham-Medium', sans-serif;
         font-size: clamp(2rem, 4vw, 3rem);
         text-transform: uppercase;
         margin-bottom: 0.5rem;
@@ -83,7 +83,7 @@
     padding: 1rem 1.5rem;
     background: #fafafa;
     border-bottom: 1px solid #eee;
-    font-family: 'Gotham-Ultra';
+    font-family: 'Gotham-Medium', sans-serif;
     color: #2c2e53;
     text-transform: uppercase;
     font-size: 0.85rem;
@@ -124,7 +124,7 @@
     }
 
 .cart-product-info h3 {
-    font-family: 'Gotham-Ultra';
+    font-family: 'Gotham-Medium', sans-serif;
     color: #2c2e53;
     font-size: 1rem;
     text-transform: uppercase;
@@ -206,7 +206,7 @@
 }
 
     .cart-summary h2 {
-        font-family: 'Gotham-Ultra';
+        font-family: 'Gotham-Medium', sans-serif;
         color: #2c2e53;
         text-transform: uppercase;
         font-size: 1.25rem;
@@ -250,7 +250,7 @@
 
 .summary-total-price {
     color: #bd945f;
-    font-family: 'Gotham-Ultra';
+    font-family: 'Gotham-Medium', sans-serif;
 }
 
 .btn-cart-primary {
@@ -260,7 +260,7 @@
     background: #2c2e53;
     color: #fff !important;
     text-transform: uppercase;
-    font-family: 'Gotham-Ultra';
+    font-family: 'Gotham-Medium', sans-serif;
     font-size: 0.9rem;
     border: 2px solid #2c2e53;
     border-radius: 0;
@@ -334,7 +334,7 @@
     }
 
 .checkout-items-title {
-    font-family: 'Gotham-Ultra';
+    font-family: 'Gotham-Medium', sans-serif;
     color: #2c2e53;
     font-size: 1rem;
     text-transform: uppercase;
@@ -378,7 +378,7 @@
 }
 
 .cart-empty h2 {
-    font-family: 'Gotham-Ultra';
+    font-family: 'Gotham-Medium', sans-serif;
     color: #2c2e53;
     text-transform: uppercase;
     margin-bottom: 0.75rem;

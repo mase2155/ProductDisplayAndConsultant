@@ -1,4 +1,5 @@
 #profile-page {
+    font-family: 'Gotham-Medium', sans-serif;
     margin-top: 7rem;
     padding: 3rem 0 5rem;
     background: #f5f5f5;
@@ -21,7 +22,7 @@
 }
 
     .profile-sidebar h2 {
-        font-family: 'Gotham-Ultra';
+        font-family: 'Gotham-Medium', sans-serif;
         color: #2c2e53;
         font-size: 1rem;
         text-transform: uppercase;
@@ -53,7 +54,7 @@
 }
 
     .profile-content h1 {
-        font-family: 'Gotham-Ultra';
+        font-family: 'Gotham-Medium', sans-serif;
         color: #2c2e53;
         text-transform: uppercase;
         font-size: 1.35rem;
@@ -61,6 +62,7 @@
     }
 
 .profile-note {
+    font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
@@ -72,7 +74,7 @@
     border: none;
     padding: 0.65rem 1.5rem;
     text-transform: uppercase;
-    font-family: 'Gotham-Ultra';
+    font-family: 'Gotham-Medium', sans-serif;
 }
 
     .btn-profile-primary:hover {

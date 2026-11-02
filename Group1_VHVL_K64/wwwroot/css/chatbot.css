@@ -1,0 +1,230 @@
+/* Chatbot — font Gotham (Medium / Thin), đồng bộ site Hoàng Hoan */
+
+#chatbot-root {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 10000;
+    font-family: 'Gotham-Medium', sans-serif;
+}
+
+#chatbot-toggle {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    border: none;
+    background: #2c2e53;
+    color: #fff;
+    font-size: 1.35rem;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(44, 46, 83, 0.35);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+    #chatbot-toggle:hover {
+        background: #bd945f;
+        transform: scale(1.05);
+    }
+
+#chatbot-panel {
+    position: absolute;
+    bottom: 4rem;
+    right: 0;
+    width: 340px;
+    max-width: calc(100vw - 2rem);
+    height: 480px;
+    max-height: calc(100vh - 6rem);
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Gotham-Medium', sans-serif;
+}
+
+.chatbot-panel-hidden {
+    display: none !important;
+}
+
+.chatbot-header {
+    background: #2c2e53;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+    .chatbot-header button {
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1.1rem;
+        padding: 0.25rem;
+    }
+
+        .chatbot-header button:hover {
+            color: #bd945f;
+        }
+
+.chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    background: #f8f8f8;
+}
+
+.chatbot-bubble {
+    max-width: 92%;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.65rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.chatbot-bubble-bot {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    color: #333;
+    margin-right: auto;
+    font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
+}
+
+.chatbot-bubble-user {
+    background: #2c2e53;
+    color: #fff;
+    margin-left: auto;
+    text-align: right;
+    font-family: 'Gotham-Medium', sans-serif;
+}
+
+.chatbot-product-card {
+    margin-top: 0.5rem;
+    border-top: 1px dashed #ddd;
+    padding-top: 0.5rem;
+    font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
+}
+
+    .chatbot-product-card img {
+        width: 100%;
+        max-height: 140px;
+        object-fit: cover;
+        border-radius: 0.35rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .chatbot-product-card h4 {
+        font-family: 'Gotham-Medium', sans-serif;
+        font-size: 0.95rem;
+        color: #2c2e53;
+        margin: 0 0 0.35rem;
+        text-transform: uppercase;
+    }
+
+    .chatbot-product-card .chatbot-meta {
+        font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
+        font-size: 0.8rem;
+        color: #666;
+        margin-bottom: 0.25rem;
+    }
+
+    .chatbot-product-card .chatbot-meta strong {
+        font-family: 'Gotham-Medium', sans-serif;
+    }
+
+    .chatbot-product-card .chatbot-price-inline {
+        font-family: 'Gotham-Medium', sans-serif;
+        color: #bd945f;
+    }
+
+.chatbot-description-title {
+    margin-top: 0.65rem;
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #2c2e53;
+}
+
+.chatbot-description {
+    margin-top: 0.35rem;
+    font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #2c2e53;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.chatbot-product-link {
+    display: inline-block;
+    margin-top: 0.65rem;
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 0.78rem;
+    color: #2c2e53;
+    text-decoration: underline;
+}
+
+    .chatbot-product-link:hover {
+        color: #bd945f;
+    }
+
+.chatbot-options {
+    padding: 0.75rem;
+    border-top: 1px solid #eee;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.chatbot-option-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #2c2e53;
+    background: #fff;
+    color: #2c2e53;
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+    .chatbot-option-btn:hover {
+        background: #bd945f;
+        border-color: #bd945f;
+        color: #fff;
+    }
+
+    .chatbot-option-btn.chatbot-option-back {
+        font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
+        border-style: dashed;
+        color: #666;
+        border-color: #aaa;
+    }
+
+        .chatbot-option-btn.chatbot-option-back:hover {
+            background: #f0f0f0;
+            color: #2c2e53;
+            border-color: #2c2e53;
+        }
+
+@media (max-width: 480px) {
+    #chatbot-panel {
+        width: calc(100vw - 1rem);
+        right: -0.5rem;
+    }
+}

@@ -1,0 +1,172 @@
+/**
+ * Giao diện AdminLTE — khu vực Admins (Hoàng Hoan)
+ * File này chỉ được link trong _AdminLayout.cshtml
+ * Scope: #hoanghoan-admin (id trên thẻ html)
+ */
+
+#hoanghoan-admin {
+    --hh-admin-primary: #2c2e53;
+    --hh-admin-accent: #bd945f;
+    --hh-admin-white: #ffffff;
+    --hh-admin-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ========== Sidebar: cao vừa brand + menu ========== */
+#hoanghoan-admin body.layout-fixed .main-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: auto;
+    min-height: 0;
+    bottom: auto;
+    overflow: visible;
+    background-color: var(--hh-admin-primary);
+}
+
+#hoanghoan-admin .main-sidebar .sidebar {
+    padding-bottom: 0.35rem;
+}
+
+/* ========== Brand "Hoàng Hoan Admin" ========== */
+#hoanghoan-admin .main-sidebar .brand-link {
+    background-color: var(--hh-admin-primary);
+    border-bottom: 1px solid var(--hh-admin-border);
+}
+
+#hoanghoan-admin .main-sidebar .brand-link .brand-text {
+    color: var(--hh-admin-white);
+    font-weight: 600;
+    margin-left: 0.75rem;
+}
+
+#hoanghoan-admin .main-sidebar .brand-link:hover .brand-text {
+    color: var(--hh-admin-accent);
+}
+
+/* ========== Menu trái ========== */
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link .nav-icon {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link:hover,
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link:focus {
+    color: var(--hh-admin-accent);
+    background-color: rgba(189, 148, 95, 0.12);
+}
+
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link:hover .nav-icon,
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link:focus .nav-icon,
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link:hover p,
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link:focus p {
+    color: var(--hh-admin-accent);
+}
+
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link.active {
+    background-color: rgba(189, 148, 95, 0.2);
+    color: var(--hh-admin-white);
+}
+
+#hoanghoan-admin .main-sidebar .nav-sidebar > .nav-item > .nav-link.active .nav-icon {
+    color: var(--hh-admin-accent);
+}
+
+/* ========== Navbar trên ========== */
+#hoanghoan-admin .main-header .nav-link:hover,
+#hoanghoan-admin .main-header .nav-link:focus {
+    color: var(--hh-admin-accent);
+}
+
+#hoanghoan-admin .main-header .btn-link.nav-link {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#hoanghoan-admin .main-header .btn-link.nav-link:hover,
+#hoanghoan-admin .main-header .btn-link.nav-link:focus {
+    color: var(--hh-admin-accent);
+    text-decoration: none;
+}
+
+/* ========== Tiêu đề trang & nội dung ========== */
+#hoanghoan-admin .content-header h1 {
+    color: var(--hh-admin-primary);
+    font-weight: 700;
+}
+
+#hoanghoan-admin .content-wrapper {
+    background-color: #f4f6f9;
+}
+
+#hoanghoan-admin .card-primary:not(.card-outline) > .card-header {
+    background-color: var(--hh-admin-primary);
+}
+
+#hoanghoan-admin .card-primary.card-outline {
+    border-top: 3px solid var(--hh-admin-primary);
+}
+
+#hoanghoan-admin .btn-primary {
+    background-color: var(--hh-admin-primary);
+    border-color: var(--hh-admin-primary);
+}
+
+#hoanghoan-admin .btn-primary:hover,
+#hoanghoan-admin .btn-primary:focus {
+    background-color: var(--hh-admin-accent);
+    border-color: var(--hh-admin-accent);
+}
+
+#hoanghoan-admin .btn-warning {
+    color: var(--hh-admin-primary);
+}
+
+#hoanghoan-admin .btn-warning:hover {
+    color: var(--hh-admin-white);
+    background-color: var(--hh-admin-accent);
+    border-color: var(--hh-admin-accent);
+}
+
+/* ========== Footer ========== */
+#hoanghoan-admin .main-footer {
+    border-top: 1px solid #dee2e6;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+#hoanghoan-admin .main-footer .author {
+    width: 100%;
+    text-align: center;
+}
+
+#hoanghoan-admin .main-footer .author p {
+    margin: 0;
+}
+
+#hoanghoan-admin .main-footer .author span {
+    color: var(--hh-admin-accent);
+    font-weight: 600;
+}
+
+#hoanghoan-admin .main-footer .author a {
+    color: var(--hh-admin-primary);
+}
+
+#hoanghoan-admin .main-footer .author a:hover {
+    color: var(--hh-admin-accent);
+}
+.author {
+    background: #fff;
+    text-align: center;
+    padding-top: 1rem;
+    font-size: 1rem;
+    color: #333;
+    font-family: 'Gotham Thin';
+    font-weight: bold;
+}
+
+    .author span {
+        color: #fd7e14;
+    }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" id="hoanghoan-admin">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/font.css" asp-append-version="true" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -31,7 +33,7 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a asp-area="Admins" asp-controller="Dashboard" asp-action="Index" class="brand-link">
-                <span class="brand-text font-weight-light ml-3">Hoàng Hoan Admin</span>
+                <span class="brand-text">Hoàng Hoan Admin</span>
             </a>
             <div class="sidebar">
                 <nav class="mt-2">
@@ -83,7 +85,9 @@
         </div>
 
         <footer class="main-footer">
-            <strong>Lê Đình Hùng</strong> — Group1 VHVL K64 — UTC
+            <div class="author">
+                <p>Created by <span>Le Dinh Hung</span> | FB: <a href="https://www.facebook.com/hungmaseco2k5" target="_blank" rel="noopener">Lê Đình Hùng ( Mase )</a></p>
+            </div>
         </footer>
     </div>
 

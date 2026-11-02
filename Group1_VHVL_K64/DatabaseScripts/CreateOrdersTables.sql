@@ -12,7 +12,7 @@ BEGIN
         ShippingAddress NVARCHAR(500) NULL,
         Phone NVARCHAR(20) NULL,
         Note NVARCHAR(1000) NULL,
-        CONSTRAINT FK_Orders_Customers FOREIGN KEY (CustomerID) REFERENCES Customer(ID)
+        CONSTRAINT FK_Orders_Customers FOREIGN KEY (CustomerID) REFERENCES Customers(ID)
     );
 END
 

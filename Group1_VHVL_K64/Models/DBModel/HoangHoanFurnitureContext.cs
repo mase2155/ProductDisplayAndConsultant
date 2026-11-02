@@ -68,6 +68,8 @@ public partial class HoangHoanFurnitureContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC27F73DBB75");
 
+            entity.ToTable("Customers");
+
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Email)
                 .HasMaxLength(150)

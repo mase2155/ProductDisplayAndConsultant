@@ -1,13 +1,13 @@
-using Group1_VHVL_K64.Data;
 using Group1_VHVL_K64.Models.DBModel;
-using Microsoft.AspNetCore.Identity;
+using Group1_VHVL_K64.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace Group1_VHVL_K64
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
@@ -16,25 +16,20 @@ namespace Group1_VHVL_K64
             builder.Services.AddDbContext<HoangHoanFurnitureContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
-
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-            builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
                 {
-                    options.SignIn.RequireConfirmedAccount = false;
-                    options.Password.RequireDigit = true;
-                    options.Password.RequireLowercase = true;
-                    options.Password.RequireUppercase = false;
-                    options.Password.RequireNonAlphanumeric = false;
-                    options.Password.RequiredLength = 6;
-                })
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                    options.LoginPath = "/Account/Login";
+                    options.AccessDeniedPath = "/Account/AccessDenied";
+                    options.ExpireTimeSpan = TimeSpan.FromHours(8);
+                    options.SlidingExpiration = true;
+                });
+
+            builder.Services.AddAuthorization();
+
+            builder.Services.AddScoped<AccountAuthService>();
 
             builder.Services.AddControllersWithViews();
-            builder.Services.AddRazorPages();
 
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options =>
@@ -44,25 +39,9 @@ namespace Group1_VHVL_K64
                 options.Cookie.IsEssential = true;
             });
 
-            builder.Services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = "/Identity/Account/Login";
-                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-            });
-
             var app = builder.Build();
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                await IdentitySeed.EnsureRolesAsync(roleManager);
-            }
-
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseMigrationsEndPoint();
-            }
-            else
+            if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
@@ -85,9 +64,8 @@ namespace Group1_VHVL_K64
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
 
-            await app.RunAsync();
+            app.Run();
         }
     }
 }

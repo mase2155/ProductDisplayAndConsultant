@@ -25,6 +25,15 @@ namespace Group1_VHVL_K64
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
+            // Session dùng cho giỏ hàng (lưu danh sách sản phẩm tạm trên server)
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -41,6 +50,8 @@ namespace Group1_VHVL_K64
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthentication(); 
             app.UseAuthorization();

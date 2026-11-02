@@ -9,7 +9,7 @@
     const productId = btn.getAttribute('data-id');
 
     // Dùng Fetch API (chuẩn JS thuần hiện đại) để gửi request lên Controller
-    fetch('/Home/AddToCart', {
+    fetch('/Cart/AddToCart', {  // <-- Chú ý đoạn này phải là /Cart/AddToCart
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

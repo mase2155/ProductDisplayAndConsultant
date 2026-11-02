@@ -16,6 +16,34 @@
     border-radius: 0.35rem;
 }
 
+.login-card-wide {
+    max-width: 480px;
+}
+
+.login-subtitle {
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 0.95rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.login-footer-link {
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+    .login-footer-link a {
+        color: #2c2e53;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+        .login-footer-link a:hover {
+            color: #bd945f;
+        }
+
     .login-card h1 {
         font-family: 'Gotham-Medium', sans-serif;
         color: #2c2e53;

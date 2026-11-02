@@ -1,4 +1,4 @@
-/* Chatbot — font Gotham (Medium / Thin), đồng bộ site Hoàng Hoan */
+/* Chatbot — Gotham-Medium (đậm, cỡ chữ dễ đọc) */
 
 #chatbot-root {
     position: fixed;
@@ -6,6 +6,7 @@
     right: 1.5rem;
     z-index: 10000;
     font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1rem;
 }
 
 #chatbot-toggle {
@@ -30,9 +31,9 @@
     position: absolute;
     bottom: 4rem;
     right: 0;
-    width: 340px;
+    width: 360px;
     max-width: calc(100vw - 2rem);
-    height: 480px;
+    height: 500px;
     max-height: calc(100vh - 6rem);
     background: #fff;
     border: 1px solid #e5e5e5;
@@ -42,6 +43,7 @@
     flex-direction: column;
     overflow: hidden;
     font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1rem;
 }
 
 .chatbot-panel-hidden {
@@ -51,12 +53,12 @@
 .chatbot-header {
     background: #2c2e53;
     color: #fff;
-    padding: 0.75rem 1rem;
+    padding: 0.85rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: 'Gotham-Medium', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     text-transform: uppercase;
     letter-spacing: 0.02em;
 }
@@ -66,7 +68,7 @@
         border: none;
         color: #fff;
         cursor: pointer;
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         padding: 0.25rem;
     }
 
@@ -83,20 +85,20 @@
 
 .chatbot-bubble {
     max-width: 92%;
-    padding: 0.65rem 0.85rem;
+    padding: 0.75rem 0.9rem;
     border-radius: 0.65rem;
     margin-bottom: 0.65rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.55;
     word-wrap: break-word;
 }
 
 .chatbot-bubble-bot {
     background: #fff;
     border: 1px solid #e8e8e8;
-    color: #333;
+    color: #2c2e53;
     margin-right: auto;
-    font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
+    font-family: 'Gotham-Medium', sans-serif;
 }
 
 .chatbot-bubble-user {
@@ -105,13 +107,14 @@
     margin-left: auto;
     text-align: right;
     font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1rem;
 }
 
 .chatbot-product-card {
     margin-top: 0.5rem;
     border-top: 1px dashed #ddd;
     padding-top: 0.5rem;
-    font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
+    font-family: 'Gotham-Medium', sans-serif;
 }
 
     .chatbot-product-card img {
@@ -124,41 +127,43 @@
 
     .chatbot-product-card h4 {
         font-family: 'Gotham-Medium', sans-serif;
-        font-size: 0.95rem;
+        font-size: 1.05rem;
         color: #2c2e53;
         margin: 0 0 0.35rem;
         text-transform: uppercase;
     }
 
     .chatbot-product-card .chatbot-meta {
-        font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
-        font-size: 0.8rem;
-        color: #666;
-        margin-bottom: 0.25rem;
+        font-family: 'Gotham-Medium', sans-serif;
+        font-size: 0.95rem;
+        color: #444;
+        margin-bottom: 0.35rem;
     }
 
     .chatbot-product-card .chatbot-meta strong {
         font-family: 'Gotham-Medium', sans-serif;
+        color: #2c2e53;
     }
 
     .chatbot-product-card .chatbot-price-inline {
         font-family: 'Gotham-Medium', sans-serif;
         color: #bd945f;
+        font-size: 1.05rem;
     }
 
 .chatbot-description-title {
-    margin-top: 0.65rem;
+    margin-top: 0.75rem;
     font-family: 'Gotham-Medium', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
     color: #2c2e53;
 }
 
 .chatbot-description {
-    margin-top: 0.35rem;
-    font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
-    font-size: 0.875rem;
-    line-height: 1.55;
+    margin-top: 0.4rem;
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
     color: #2c2e53;
     white-space: normal;
     word-break: break-word;
@@ -166,9 +171,9 @@
 
 .chatbot-product-link {
     display: inline-block;
-    margin-top: 0.65rem;
+    margin-top: 0.75rem;
     font-family: 'Gotham-Medium', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.95rem;
     color: #2c2e53;
     text-decoration: underline;
 }
@@ -178,13 +183,13 @@
     }
 
 .chatbot-options {
-    padding: 0.75rem;
+    padding: 0.85rem;
     border-top: 1px solid #eee;
     background: #fff;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    max-height: 180px;
+    gap: 0.45rem;
+    max-height: 190px;
     overflow-y: auto;
 }
 
@@ -192,12 +197,12 @@
     display: block;
     width: 100%;
     text-align: left;
-    padding: 0.5rem 0.75rem;
+    padding: 0.6rem 0.85rem;
     border: 1px solid #2c2e53;
     background: #fff;
     color: #2c2e53;
     font-family: 'Gotham-Medium', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     cursor: pointer;
     border-radius: 0.25rem;
     transition: background 0.15s ease, color 0.15s ease;
@@ -210,9 +215,10 @@
     }
 
     .chatbot-option-btn.chatbot-option-back {
-        font-family: 'Gotham-Thin', 'Gotham-Medium', sans-serif;
+        font-family: 'Gotham-Medium', sans-serif;
+        font-size: 0.9rem;
         border-style: dashed;
-        color: #666;
+        color: #555;
         border-color: #aaa;
     }
 

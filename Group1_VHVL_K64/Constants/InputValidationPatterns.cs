@@ -37,5 +37,23 @@ namespace Group1_VHVL_K64.Constants
 
         public const string PhoneOptionalErrorMessage =
             "Số điện thoại không hợp lệ (ví dụ: 0912345678 hoặc +84912345678).";
+
+        /// <summary>
+        /// Số điện thoại Việt Nam bắt buộc (0 + 9 số hoặc +84 + 9 số).
+        /// </summary>
+        public const string PhoneRequired =
+            @"^(0[0-9]{9}|\+84[0-9]{9})$";
+
+        public const string PhoneRequiredErrorMessage =
+            "Số điện thoại không hợp lệ (bắt đầu bằng 0 hoặc +84, đủ 10 chữ số).";
+
+        /// <summary>
+        /// Nội dung liên hệ: 10–2000 ký tự, không chỉ khoảng trắng.
+        /// </summary>
+        public const string ContactMessage =
+            @"^(?!\s*$)[\s\S]{10,2000}$";
+
+        public const string ContactMessageErrorMessage =
+            "Nội dung phải từ 10 đến 2000 ký tự và không được để trống.";
     }
 }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ContactFormViewModel
+@{
 	ViewData["Title"] = "Liên Hệ";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -21,34 +22,34 @@
             <div class="content col-6">
                 <h3>Liên hệ với chúng tôi</h3>
                 <div class="form-contact">
-                    <form id="contactForm" action="javascript:void(0);" novalidate class="needs-validation">
+                    @if (TempData["ContactSuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success mb-3">@TempData["ContactSuccessMessage"]</div>
+                    }
+
+                    <form id="contactForm" asp-action="Index" asp-controller="Contact" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                         <div class="mb-3">
-                            <input type="text" name="Username" class="form-control" placeholder="Họ Và Tên" required>
-                            <!-- Hai thẻ chứa lỗi cho Họ và Tên -->
-                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Vui lòng nhập thông tin này.</div>
-                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Họ tên không hợp lệ.</div>
+                            <input asp-for="FullName" class="form-control" placeholder="Họ Và Tên" />
+                            <span asp-validation-for="FullName" class="text-danger" style="font-size: 0.875rem;"></span>
                         </div>
 
                         <div class="mb-3">
-                            <input type="email" name="Email" class="form-control" placeholder="Email" required>
-                            <!-- Hai thẻ chứa lỗi cho Email -->
-                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Vui lòng nhập email.</div>
-                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Email không đúng định dạng (VD: example@domain.com).</div>
+                            <input asp-for="Email" class="form-control" placeholder="Email" />
+                            <span asp-validation-for="Email" class="text-danger" style="font-size: 0.875rem;"></span>
                         </div>
 
                         <div class="mb-3">
-                            <input type="tel" name="PhoneNumber" class="form-control" placeholder="Số Điện Thoại" required>
-                            <!-- Hai thẻ chứa lỗi cho Số điện thoại -->
-                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Vui lòng nhập số điện thoại.</div>
-                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Số điện thoại không hợp lệ (Phải bắt đầu bằng 0 hoặc +84 và có 10 số).</div>
+                            <input asp-for="Phone" class="form-control" placeholder="Số Điện Thoại" />
+                            <span asp-validation-for="Phone" class="text-danger" style="font-size: 0.875rem;"></span>
                         </div>
 
                         <div class="mb-3">
-                            <input type="text" name="Content" class="form-control" placeholder="Nội Dung" required>
-                            <!-- Hai thẻ chứa lỗi cho Nội dung -->
-                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Vui lòng nhập nội dung.</div>
-                            <div class="err text-danger" style="display: none; font-size: 0.875rem;">Nội dung không hợp lệ.</div>
+                            <input asp-for="Content" class="form-control" placeholder="Nội Dung" />
+                            <span asp-validation-for="Content" class="text-danger" style="font-size: 0.875rem;"></span>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Gửi</button>
@@ -60,4 +61,8 @@
 </section>
 @section Styles {
     <link rel="stylesheet" href="~/css/contact.css?v=@DateTime.Now.Ticks" />
+}
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

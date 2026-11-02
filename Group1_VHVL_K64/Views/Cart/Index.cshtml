@@ -1,5 +1,154 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<Group1_VHVL_K64.Models.CartLineDisplay>
 @{
+    ViewData["Title"] = "Giỏ Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    decimal grandTotal = 0;
+    foreach (var line in Model)
+    {
+        grandTotal += line.LineTotal;
+    }
+
+    int totalItems = Model.Sum(x => x.Quantity);
+}
+
+<section id="cart-banner">
+    <div class="cart-banner-image">
+        <img src="~/img/san_pham/banner1.jpg" alt="Banner giỏ hàng">
+    </div>
+</section>
+
+<section id="cart-page">
+    <div class="container">
+        @if (!Model.Any())
+        {
+            <div class="cart-empty">
+                <div class="cart-empty-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <h2>Giỏ hàng đang trống</h2>
+                <p>Hãy chọn sản phẩm yêu thích và thêm vào giỏ để tiếp tục mua sắm.</p>
+                <a asp-controller="Product" asp-action="Index" class="btn-cart-primary">
+                    Xem sản phẩm
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="cart-panel">
+                        <div class="cart-panel-head d-none d-md-grid">
+                            <span>Sản phẩm</span>
+                            <span class="text-center">Đơn giá</span>
+                            <span class="text-center">Số lượng</span>
+                            <span class="text-end">Thành tiền</span>
+                        </div>
+
+                        @foreach (var item in Model)
+                        {
+                            <div class="cart-row" data-product-id="@item.ProductId">
+                                <div class="cart-product">
+                                    <div class="cart-product-thumb">
+                                        <img src="@item.Urlimage" alt="@item.Name">
+                                    </div>
+                                    <div class="cart-product-info">
+                                        <h3>@item.Name</h3>
+                                        <button type="button"
+                                                class="btn-cart-remove btn-remove-from-cart"
+                                                data-id="@item.ProductId">
+                                            <i class="fa-regular fa-trash-can"></i> Xóa
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="cart-unit-price" data-label="Đơn giá">
+                                    @item.UnitPrice.ToString("N0") đ
+                                </div>
+
+                                <div class="cart-quantity" data-label="Số lượng">
+                                    <div class="qty-control">
+                                        <button type="button"
+                                                class="qty-btn btn-qty-minus"
+                                                data-id="@item.ProductId"
+                                                aria-label="Giảm số lượng">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                        <input type="number"
+                                               class="qty-input"
+                                               value="@item.Quantity"
+                                               min="1"
+                                               max="99"
+                                               data-id="@item.ProductId"
+                                               aria-label="Số lượng @item.Name">
+                                        <button type="button"
+                                                class="qty-btn btn-qty-plus"
+                                                data-id="@item.ProductId"
+                                                aria-label="Tăng số lượng">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="cart-line-total text-end" data-label="Thành tiền">
+                                    <span class="line-total-value">@item.LineTotal.ToString("N0")</span> đ
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="cart-summary">
+                        <h2>Tóm tắt đơn hàng</h2>
+
+                        <div class="summary-row">
+                            <span>Tạm tính (@totalItems sản phẩm)</span>
+                            <span><span id="cart-grand-total">@grandTotal.ToString("N0")</span> đ</span>
+                        </div>
+
+                        <div class="summary-row summary-shipping">
+                            <span>Phí vận chuyển</span>
+                            <span class="text-muted">Liên hệ sau</span>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-row summary-total">
+                            <span>Tổng cộng</span>
+                            <span class="summary-total-price">
+                                <span id="cart-grand-total-footer">@grandTotal.ToString("N0")</span> đ
+                            </span>
+                        </div>
+
+                        <button type="button" class="btn-cart-primary w-100" disabled title="Chức năng đang phát triển">
+                            Tiến hành thanh toán
+                        </button>
+
+                        <a asp-controller="Product" asp-action="Index" class="btn-cart-outline w-100">
+                            Tiếp tục mua sắm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true" />
+}
+
+@section Scripts {
+    <script src="~/js/cart.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var totalItems = @totalItems;
+            var badge = document.querySelector('.cart-count-badge');
+            if (badge && totalItems > 0) {
+                badge.textContent = totalItems;
+                badge.style.display = 'inline-flex';
+            }
+        });
+    </script>
 }

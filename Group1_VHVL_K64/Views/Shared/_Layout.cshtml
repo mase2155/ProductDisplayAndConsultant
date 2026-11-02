@@ -69,17 +69,28 @@
                             </a>
                         </div>
                         <div class="user-login-icon">
-                            @if (User.IsInRole("Admin"))
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
                             {
-                                <a asp-area="Admins" asp-controller="Dashboard" asp-action="Index"
-                                   class="me-3" title="Trang quản trị">
-                                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a asp-area="Admins" asp-controller="Dashboard" asp-action="Index"
+                                       class="me-2" title="Trang quản trị">
+                                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                                    </a>
+                                }
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-link p-0 border-0" title="Đăng xuất (@User.Identity.Name)">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Login" title="Đăng nhập">
+                                    <i class="fa-solid fa-user"></i>
                                 </a>
                             }
-                            <a asp-area="Identity" asp-page="/Account/Login"
-                               title="Đăng nhập">
-                                <i class="fa-solid fa-user"></i>
-                            </a>
                         </div>
                    </div>
                 </div>

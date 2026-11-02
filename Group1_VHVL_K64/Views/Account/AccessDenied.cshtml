@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Không có quyền truy cập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="login-page">
+    <div class="container">
+        <div class="login-card text-center">
+            <h1>Không có quyền</h1>
+            <p class="mb-4">Tài khoản của bạn không được phép vào trang này.</p>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-login">Về trang chủ</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-area="Admins" asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-dark ms-2">Vào Admin</a>
+            }
+        </div>
+    </div>
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+}

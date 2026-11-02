@@ -1,0 +1,45 @@
+#login-page {
+    margin-top: 7rem;
+    padding: 3rem 0 5rem;
+    background: #f5f5f5;
+    min-height: 60vh;
+}
+
+.login-card {
+    max-width: 420px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    padding: 2rem;
+    border-radius: 0.35rem;
+}
+
+    .login-card h1 {
+        font-family: 'Gotham-Ultra';
+        color: #2c2e53;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+.login-hint {
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn-login {
+    background: #2c2e53;
+    color: #fff !important;
+    text-transform: uppercase;
+    font-family: 'Gotham-Ultra';
+    border: none;
+    padding: 0.65rem;
+}
+
+    .btn-login:hover {
+        background: #bd945f;
+        color: #fff !important;
+    }

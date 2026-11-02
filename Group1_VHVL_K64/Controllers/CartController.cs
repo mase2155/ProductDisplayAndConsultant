@@ -1,6 +1,9 @@
-﻿using Group1_VHVL_K64.Helpers;
+﻿using Group1_VHVL_K64.Constants;
+using Group1_VHVL_K64.Helpers;
 using Group1_VHVL_K64.Models;
 using Group1_VHVL_K64.Models.DBModel;
+using Group1_VHVL_K64.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +12,14 @@ namespace Group1_VHVL_K64.Controllers
     public class CartController : Controller
     {
         private readonly HoangHoanFurnitureContext _context;
+        private readonly CheckoutService _checkoutService;
 
-        public CartController(HoangHoanFurnitureContext context)
+        public CartController(
+            HoangHoanFurnitureContext context,
+            CheckoutService checkoutService)
         {
             _context = context;
+            _checkoutService = checkoutService;
         }
 
         /// <summary>
@@ -133,6 +140,60 @@ namespace Group1_VHVL_K64.Controllers
                 message = "Đã xóa toàn bộ sản phẩm trong giỏ hàng.",
                 totalCartItems = 0
             });
+        }
+
+        /// <summary>
+        /// Khách hàng (role User) xác nhận thanh toán → tạo Order + OrderDetail → xóa giỏ.
+        /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Checkout()
+        {
+            CheckoutResult result = await _checkoutService.PlaceOrderFromCartAsync(User, HttpContext.Session);
+
+            if (result.NeedLogin)
+            {
+                TempData["ErrorMessage"] = result.Message;
+                return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Index)) });
+            }
+
+            if (result.NeedProfileUpdate)
+            {
+                TempData["ErrorMessage"] = result.Message;
+                return RedirectToAction("Profile", "Account");
+            }
+
+            if (!result.Success || result.OrderId == null)
+            {
+                TempData["ErrorMessage"] = result.Message;
+                return RedirectToAction(nameof(Index));
+            }
+
+            TempData["SuccessMessage"] = result.Message;
+            return RedirectToAction(nameof(CheckoutSuccess), new { id = result.OrderId });
+        }
+
+        [HttpGet]
+        [Authorize(Roles = AppRoles.User)]
+        public async Task<IActionResult> CheckoutSuccess(int id)
+        {
+            Order? order = await _context.Orders
+                .Include(o => o.OrderDetails)
+                .Include(o => o.Customer)
+                .FirstOrDefaultAsync(o => o.Id == id);
+
+            if (order == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            int? customerId = _checkoutService.GetCustomerIdFromUser(User);
+            if (customerId == null || order.CustomerId != customerId.Value)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(order);
         }
 
         private async Task<List<CartLineDisplay>> BuildCartLinesFromSessionAsync()

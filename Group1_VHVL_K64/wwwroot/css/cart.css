@@ -296,6 +296,63 @@
         color: #fff !important;
     }
 
+.cart-checkout-hint {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    font-family: 'Gotham-Medium';
+}
+
+.checkout-success-box {
+    max-width: 640px;
+    text-align: left;
+}
+
+    .checkout-success-box h2 {
+        text-align: center;
+    }
+
+    .checkout-success-box > p {
+        text-align: center;
+    }
+
+.checkout-summary-list {
+    margin: 1.5rem 0;
+    font-family: 'Gotham-Medium';
+}
+
+    .checkout-summary-list dt {
+        color: #888;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+
+    .checkout-summary-list dd {
+        color: #2c2e53;
+        margin-bottom: 0.25rem;
+    }
+
+.checkout-items-title {
+    font-family: 'Gotham-Ultra';
+    color: #2c2e53;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.checkout-items {
+    list-style: none;
+    padding: 0;
+    font-family: 'Gotham-Medium';
+    color: #444;
+}
+
+    .checkout-items li {
+        padding: 0.35rem 0;
+        border-bottom: 1px dashed #eee;
+    }
+
 /* Giỏ trống */
 .cart-empty {
     background: #fff;

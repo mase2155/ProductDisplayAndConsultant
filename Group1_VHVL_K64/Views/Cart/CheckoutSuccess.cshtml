@@ -1,0 +1,47 @@
+@model Group1_VHVL_K64.Models.DBModel.Order
+@{
+    ViewData["Title"] = "Đặt hàng thành công";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="cart-page">
+    <div class="container">
+        <div class="cart-empty checkout-success-box">
+            <div class="cart-empty-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2>Đặt hàng thành công</h2>
+            <p>Mã đơn hàng: <strong>#@Model.Id</strong></p>
+            <p>Chúng tôi đã ghi nhận đơn và gửi tới bộ phận quản trị để xử lý.</p>
+
+            <dl class="checkout-summary-list">
+                <dt>Người nhận</dt>
+                <dd>@Model.Customer?.Fullname</dd>
+                <dt>Email</dt>
+                <dd>@Model.Customer?.Email</dd>
+                <dt>Điện thoại</dt>
+                <dd>@Model.Phone</dd>
+                <dt>Địa chỉ giao</dt>
+                <dd>@Model.ShippingAddress</dd>
+                <dt>Tổng thanh toán</dt>
+                <dd><strong>@Model.TotalAmount.ToString("N0") đ</strong></dd>
+            </dl>
+
+            <h3 class="checkout-items-title">Sản phẩm đã đặt</h3>
+            <ul class="checkout-items">
+                @foreach (var line in Model.OrderDetails)
+                {
+                    <li>@line.ProductName × @line.Quantity — @line.LineTotal.ToString("N0") đ</li>
+                }
+            </ul>
+
+            <a asp-controller="Product" asp-action="Index" class="btn-cart-primary mt-3">
+                Tiếp tục mua sắm
+            </a>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true" />
+}

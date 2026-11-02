@@ -1,0 +1,25 @@
+@model OrderFormModel
+@{
+    ViewData["Title"] = "Sửa đơn hàng #" + Model.Id;
+}
+
+<div class="card card-warning">
+    <div class="card-header">
+        <h3 class="card-title">Cập nhật đơn hàng</h3>
+    </div>
+    <form asp-action="Edit" method="post">
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+            <partial name="_OrderForm" model="Model" />
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-warning">Cập nhật</button>
+            <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

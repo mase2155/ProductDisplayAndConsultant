@@ -1,0 +1,22 @@
+@model Order
+@{
+    ViewData["Title"] = "Xóa đơn hàng";
+}
+
+<div class="alert alert-warning">
+    Bạn có chắc muốn xóa đơn hàng <strong>#@Model.Id</strong> của <strong>@Model.Customer?.Fullname</strong>?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Tổng tiền</dt>
+    <dd class="col-sm-9">@Model.TotalAmount.ToString("N0") đ</dd>
+    <dt class="col-sm-3">Trạng thái</dt>
+    <dd class="col-sm-9">@Model.Status</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

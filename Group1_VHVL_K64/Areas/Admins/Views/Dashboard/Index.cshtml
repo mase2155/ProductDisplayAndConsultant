@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Bảng điều khiển";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Chào Admin</h3>
+            </div>
+            <div class="card-body">
+                <p>Dùng menu bên trái để quản lý <strong>đơn hàng của khách hàng (Users)</strong>.</p>
+                <a asp-area="Admins" asp-controller="Orders" asp-action="Index" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag mr-1"></i> Xem danh sách đơn hàng
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

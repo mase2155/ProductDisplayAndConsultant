@@ -55,5 +55,14 @@ namespace Group1_VHVL_K64.Constants
 
         public const string ContactMessageErrorMessage =
             "Nội dung phải từ 10 đến 2000 ký tự và không được để trống.";
+
+        /// <summary>
+        /// Email hoặc số điện thoại Việt Nam (form liên hệ nhanh trang chủ).
+        /// </summary>
+        public const string EmailOrPhone =
+            @"^(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|0[0-9]{9}|\+84[0-9]{9})$";
+
+        public const string EmailOrPhoneErrorMessage =
+            "Nhập email hợp lệ hoặc số điện thoại (0 + 9 số hoặc +84 + 9 số).";
     }
 }

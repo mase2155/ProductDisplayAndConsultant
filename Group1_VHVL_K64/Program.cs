@@ -28,6 +28,7 @@ namespace Group1_VHVL_K64
             builder.Services.AddAuthorization();
 
             builder.Services.AddScoped<AccountAuthService>();
+            builder.Services.AddScoped<CustomerProfileService>();
 
             builder.Services.AddControllersWithViews();
 

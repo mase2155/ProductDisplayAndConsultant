@@ -1,0 +1,73 @@
+@model CustomerProfileViewModel
+@{
+    ViewData["Title"] = "Tài khoản của tôi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="profile-page">
+    <div class="container">
+        <div class="profile-layout">
+            <aside class="profile-sidebar">
+                <h2>Tài khoản</h2>
+                <nav>
+                    <a asp-action="Profile" class="active">Thông tin cá nhân</a>
+                    <a asp-action="ChangePassword">Đổi mật khẩu</a>
+                </nav>
+            </aside>
+
+            <div class="profile-content">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                }
+
+                <h1>Thông tin cá nhân</h1>
+                <p class="profile-note">
+                    Thông tin này dùng để xác định bạn khi hoàn tất đơn hàng (họ tên, liên hệ, địa chỉ giao hàng).
+                </p>
+
+                <form asp-action="Profile" method="post" class="profile-form">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="CustomerId" />
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Fullname" class="form-label"></label>
+                        <input asp-for="Fullname" class="form-control" />
+                        <span asp-validation-for="Fullname" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Phone" class="form-label"></label>
+                        <input asp-for="Phone" class="form-control" placeholder="VD: 0912345678" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ShippingAddress" class="form-label"></label>
+                        <textarea asp-for="ShippingAddress" class="form-control" rows="3"
+                                  placeholder="Số nhà, đường, quận, thành phố..."></textarea>
+                        <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-profile-primary">Lưu thông tin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
+}
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

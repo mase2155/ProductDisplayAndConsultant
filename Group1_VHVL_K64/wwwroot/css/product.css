@@ -1,4 +1,5 @@
-﻿#banner {
+﻿/* ==================== TOÀN BỘ CSS CŨ CỦA BẠN (GIỮ NGUYÊN) ==================== */
+#banner {
     position: relative;
     width: 100%;
     height: 34rem;
@@ -98,13 +99,6 @@
     padding-bottom: 4rem;
 }
 
-.product-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-}
-
 .table-product {
     background-color: #fff;
     margin-bottom: 3rem;
@@ -116,8 +110,6 @@
     align-items: center;
     padding: 0 0 2rem 0;
 }
-
-
 
 .title h2 {
     font-family: 'Gotham-Ultra';
@@ -155,28 +147,22 @@
 .list-product {
     text-align: center;
 }
+
 .productCard {
     background: #fff;
     padding: 1rem;
-    border: 0.0625rem solid #e5e5e5; 
-    border-radius: 0.5rem; 
+    border: 0.0625rem solid #e5e5e5;
+    border-radius: 0.5rem;
     box-sizing: border-box;
     height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor:pointer;
+    cursor: pointer;
 }
+
     .productCard:hover {
-        transform: translateY(-0.3125rem); /* Nổi lên trên khoảng 5px (0.3125rem = 5px / 16) */
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Tạo bóng đổ đậm hơn để có chiều sâu */
+        transform: translateY(-0.3125rem);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     }
-
-    .productCard img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 0.25rem; 
-    }
-
 
     .productCard h4 {
         color: #2c2e53;
@@ -187,16 +173,65 @@
         cursor: pointer;
     }
 
-.productCard .details {
-    font-family: 'Gotham-Medium';
+    .productCard .details {
+        font-family: 'Gotham-Medium';
+    }
+
+    .productCard .rateByStars {
+        color: #bd945f;
+    }
+
+    .productCard .price {
+        font-weight: bold;
+        font-family: 'Gotham-Medium';
+    }
+
+
+/* ==================== PHẦN XỬ LÝ ẢNH & OVERLAY (CHUẨN XÁC) ==================== */
+
+.product-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
 }
 
-.productCard .rateByStars {
-    color: #bd945f;
+    .product-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
 }
 
-.productCard .price {
-    font-weight: bold;
-    font-family: 'Gotham-Medium';
+.product-image-wrapper:hover .product-overlay {
+    opacity: 1;
+    visibility: visible;
 }
 
+.overlay-btn {
+    width: 45px;
+    height: 45px;
+    background-color: #ffffff;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 18px;
+}

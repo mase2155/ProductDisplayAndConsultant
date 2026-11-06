@@ -1,5 +1,6 @@
 using Group1_VHVL_K64.Areas.Admins.Models;
 using Group1_VHVL_K64.Models.DBModel;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -73,6 +74,13 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
                 return View(formModel);
             }
 
+            // Gán CustomerId: hoặc giữ khách đã chọn, hoặc tạo khách walk-in mới rồi lấy Id.
+            bool customerResolved = await TryResolveCustomerForFormAsync(formModel);
+            if (!customerResolved)
+            {
+                return View(formModel);
+            }
+
             List<OrderDetail> validDetails = await BuildOrderDetailsFromFormAsync(formModel);
             if (validDetails.Count == 0)
             {
@@ -142,6 +150,13 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             await FillDropdownsAsync(formModel);
 
             if (!ModelState.IsValid)
+            {
+                return View(formModel);
+            }
+
+            // Cùng luồng như tạo mới: đổi sang khách mới sẽ tạo bản ghi Customer walk-in và cập nhật CustomerId.
+            bool customerResolved = await TryResolveCustomerForFormAsync(formModel);
+            if (!customerResolved)
             {
                 return View(formModel);
             }
@@ -226,6 +241,8 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
         {
             OrderFormModel formModel = new OrderFormModel
             {
+                CustomerSelectionMode = OrderFormModel.CustomerModeExisting,
+                CustomerId = 0,
                 OrderDate = DateTime.Now,
                 Status = "Pending"
             };
@@ -243,6 +260,7 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             OrderFormModel formModel = new OrderFormModel
             {
                 Id = order.Id,
+                CustomerSelectionMode = OrderFormModel.CustomerModeExisting,
                 CustomerId = order.CustomerId,
                 OrderDate = order.OrderDate,
                 Status = order.Status,
@@ -320,6 +338,106 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Chuẩn hóa CustomerId trước khi lưu đơn: chế độ Existing thì kiểm tra Id;
+        /// chế độ New thì tạo Customer (email giữ chỗ nếu admin không nhập) và gán Id vào formModel.
+        /// </summary>
+        private async Task<bool> TryResolveCustomerForFormAsync(OrderFormModel formModel)
+        {
+            if (formModel.CustomerSelectionMode == OrderFormModel.CustomerModeExisting)
+            {
+                if (formModel.CustomerId <= 0)
+                {
+                    ModelState.AddModelError(
+                        nameof(OrderFormModel.CustomerId),
+                        "Vui lòng chọn khách hàng.");
+                    return false;
+                }
+
+                bool customerExists = await _context.Customers
+                    .AnyAsync(c => c.Id == formModel.CustomerId);
+                if (!customerExists)
+                {
+                    ModelState.AddModelError(
+                        nameof(OrderFormModel.CustomerId),
+                        "Khách hàng không tồn tại.");
+                    return false;
+                }
+
+                return true;
+            }
+
+            if (formModel.CustomerSelectionMode == OrderFormModel.CustomerModeNew)
+            {
+                string fullName = formModel.NewCustomerFullName?.Trim() ?? string.Empty;
+                if (string.IsNullOrWhiteSpace(fullName))
+                {
+                    ModelState.AddModelError(
+                        nameof(OrderFormModel.NewCustomerFullName),
+                        "Vui lòng nhập họ tên khách hàng mới.");
+                    return false;
+                }
+
+                string? emailToStore = null;
+                if (!string.IsNullOrWhiteSpace(formModel.NewCustomerEmail))
+                {
+                    emailToStore = formModel.NewCustomerEmail.Trim();
+                    string normalized = emailToStore.ToLowerInvariant();
+                    bool emailTaken = await _context.Customers
+                        .AnyAsync(c => c.Email.ToLower() == normalized);
+                    if (emailTaken)
+                    {
+                        ModelState.AddModelError(
+                            nameof(OrderFormModel.NewCustomerEmail),
+                            "Email này đã tồn tại. Hãy chọn khách từ danh sách hoặc dùng email khác.");
+                        return false;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(emailToStore))
+                {
+                    // Email unique không cần tra DB nhờ GUID (cột Email không cho null trong CSDL).
+                    emailToStore = BuildPlaceholderWalkInEmail();
+                }
+
+                string? phoneFromForm = null;
+                if (!string.IsNullOrWhiteSpace(formModel.NewCustomerPhone))
+                {
+                    phoneFromForm = formModel.NewCustomerPhone.Trim();
+                }
+
+                PasswordHasher<string> passwordHasher = new PasswordHasher<string>();
+                string placeholderPassword = "WALK-IN-" + Guid.NewGuid().ToString("N");
+                string passwordHash = passwordHasher.HashPassword(null!, placeholderPassword);
+
+                Customer walkInCustomer = new Customer
+                {
+                    Fullname = fullName,
+                    Email = emailToStore,
+                    PlainPassword = placeholderPassword,
+                    PasswordHash = passwordHash,
+                    Phone = phoneFromForm,
+                    ShippingAddress = null
+                };
+
+                _context.Customers.Add(walkInCustomer);
+                await _context.SaveChangesAsync();
+
+                formModel.CustomerId = walkInCustomer.Id;
+                return true;
+            }
+
+            ModelState.AddModelError(
+                nameof(OrderFormModel.CustomerSelectionMode),
+                "Chế độ khách hàng không hợp lệ.");
+            return false;
+        }
+
+        private static string BuildPlaceholderWalkInEmail()
+        {
+            return "walkin." + Guid.NewGuid().ToString("N") + "@orders.local";
         }
     }
 }

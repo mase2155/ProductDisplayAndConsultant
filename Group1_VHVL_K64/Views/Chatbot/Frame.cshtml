@@ -1,0 +1,69 @@
+@model Group1_VHVL_K64.Models.Chatbot.ChatbotStepResponse
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="~/css/font.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/chatbot.css" asp-append-version="true" />
+    <title>Hoàng Hoan — Tư vấn</title>
+</head>
+<body class="bg-light m-0 p-0">
+    <div class="chatbot-frame-inner p-3">
+        @{
+            string botText = Model.BotMessage.Replace("**", string.Empty);
+        }
+        <div class="chatbot-bubble chatbot-bubble-bot mb-2">@botText</div>
+
+        @if (Model.ProductDetail != null)
+        {
+            var d = Model.ProductDetail;
+            string priceText = d.FormattedPrice;
+            if (string.IsNullOrWhiteSpace(priceText))
+            {
+                decimal disp = d.NewPrice ?? d.Price;
+                priceText = disp.ToString("N0") + " đ";
+            }
+            string stars = d.RateByStars != null ? d.RateByStars + " / 5 sao" : "Chưa có đánh giá";
+            string desc = d.Description ?? d.Details ?? "Chưa có mô tả chi tiết.";
+
+            <div class="chatbot-product-card">
+                @if (!string.IsNullOrWhiteSpace(d.Urlimage))
+                {
+                    <img src="@d.Urlimage" alt="@d.Name">
+                }
+                <h4>@d.Name</h4>
+                <div class="chatbot-meta"><strong>Danh mục:</strong> @(d.CategoryName ?? "")</div>
+                <div class="chatbot-meta"><strong>Đánh giá:</strong> @stars</div>
+                <div class="chatbot-meta"><strong>Giá:</strong> <span class="chatbot-price-inline">@priceText</span></div>
+                <div class="chatbot-description-title">Mô tả sản phẩm</div>
+                <div class="chatbot-description">@desc</div>
+                <a class="chatbot-product-link" href="/Product/Index">Xem thêm tại trang Sản phẩm</a>
+            </div>
+        }
+
+        @if (Model.Options.Any())
+        {
+            <div class="chatbot-options mt-2">
+                @foreach (var opt in Model.Options)
+                {
+                    string btnClass = (opt.StepType == "welcome" || (opt.Label != null && opt.Label.StartsWith("←")))
+                        ? "chatbot-option-btn chatbot-option-back"
+                        : "chatbot-option-btn";
+
+                    <a class="btn btn-block @btnClass"
+                       asp-controller="Chatbot"
+                       asp-action="Frame"
+                       asp-route-step="@opt.StepType"
+                       asp-route-id="@opt.TargetId">@opt.Label</a>
+                }
+            </div>
+        }
+    </div>
+</body>
+</html>

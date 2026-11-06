@@ -1,4 +1,4 @@
-/* Chatbot — Gotham-Medium (đậm, cỡ chữ dễ đọc) */
+/* Chatbot widget + iframe nội dung (Gotham-Medium) */
 
 #chatbot-root {
     position: fixed;
@@ -51,6 +51,7 @@
 }
 
 .chatbot-header {
+    flex-shrink: 0;
     background: #2c2e53;
     color: #fff;
     padding: 0.85rem 1rem;
@@ -76,15 +77,23 @@
             color: #bd945f;
         }
 
-.chatbot-messages {
+.chatbot-iframe {
     flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
+    width: 100%;
+    min-height: 0;
+    border: 0;
     background: #f8f8f8;
 }
 
+/* Nội dung trong iframe (/Chatbot/Frame) */
+.chatbot-frame-inner {
+    font-family: 'Gotham-Medium', sans-serif;
+    font-size: 1rem;
+    max-width: 100%;
+}
+
 .chatbot-bubble {
-    max-width: 92%;
+    max-width: 100%;
     padding: 0.75rem 0.9rem;
     border-radius: 0.65rem;
     margin-bottom: 0.65rem;
@@ -97,17 +106,7 @@
     background: #fff;
     border: 1px solid #e8e8e8;
     color: #2c2e53;
-    margin-right: auto;
     font-family: 'Gotham-Medium', sans-serif;
-}
-
-.chatbot-bubble-user {
-    background: #2c2e53;
-    color: #fff;
-    margin-left: auto;
-    text-align: right;
-    font-family: 'Gotham-Medium', sans-serif;
-    font-size: 1rem;
 }
 
 .chatbot-product-card {
@@ -183,14 +182,9 @@
     }
 
 .chatbot-options {
-    padding: 0.85rem;
-    border-top: 1px solid #eee;
-    background: #fff;
     display: flex;
     flex-direction: column;
     gap: 0.45rem;
-    max-height: 190px;
-    overflow-y: auto;
 }
 
 .chatbot-option-btn {
@@ -206,6 +200,7 @@
     cursor: pointer;
     border-radius: 0.25rem;
     transition: background 0.15s ease, color 0.15s ease;
+    text-decoration: none;
 }
 
     .chatbot-option-btn:hover {
@@ -215,7 +210,6 @@
     }
 
     .chatbot-option-btn.chatbot-option-back {
-        font-family: 'Gotham-Medium', sans-serif;
         font-size: 0.9rem;
         border-style: dashed;
         color: #555;

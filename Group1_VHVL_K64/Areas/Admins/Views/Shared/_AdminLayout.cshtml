@@ -52,6 +52,13 @@
                                 <p>Quản lý đơn hàng</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a asp-area="Admins" asp-controller="Products" asp-action="Index"
+                               class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Products" ? "active" : "")">
+                                <i class="nav-icon fas fa-couch"></i>
+                                <p>Quản lý sản phẩm</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -74,6 +81,15 @@
                     {
                         <div class="alert alert-success alert-dismissible fade show">
                             @TempData["SuccessMessage"]
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            @TempData["ErrorMessage"]
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

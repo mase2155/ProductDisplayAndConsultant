@@ -1,0 +1,102 @@
+@model DailyRevenueReportViewModel
+@{
+    ViewData["Title"] = "Báo cáo doanh thu theo ngày";
+    string dateValue = Model.ReportDate.ToString("yyyy-MM-dd");
+}
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Báo cáo chi tiết doanh thu</h3>
+    </div>
+    <div class="card-body">
+        @* Chọn ngày và gửi GET sang Reports/DailyRevenue — chỉ đổi dữ liệu, không ghi DB. *@
+        <form asp-action="DailyRevenue" method="get" class="form-inline mb-4">
+            <label class="mr-2" for="reportDate">Ngày</label>
+            <input type="date" id="reportDate" name="reportDate" class="form-control mr-2" value="@dateValue" />
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Xem báo cáo
+            </button>
+        </form>
+
+        <p class="text-muted">
+            Hiển thị các đơn có <strong>ngày đặt</strong> trong khoảng từ 00:00 đến trước 24:00 (theo giờ máy chủ).
+            Đơn trạng thái <span class="badge badge-secondary">Cancelled</span> không tính vào doanh thu.
+        </p>
+
+        <div class="alert alert-info">
+            <strong>Tổng doanh thu ngày @Model.ReportDate.ToString("dd/MM/yyyy"):</strong>
+            <span class="h5 mb-0 ml-2">@Model.TotalRevenue.ToString("N0") đ</span>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-outline card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Sản phẩm đã bán</h3>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th class="text-right">Số lượng</th>
+                                    <th class="text-right">Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (!Model.Products.Any())
+                                {
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted">Không có bán hàng trong ngày này.</td>
+                                    </tr>
+                                }
+                                @foreach (var row in Model.Products)
+                                {
+                                    <tr>
+                                        <td>@row.ProductName</td>
+                                        <td class="text-right">@row.QuantitySold</td>
+                                        <td class="text-right">@row.LineTotalSum.ToString("N0") đ</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card card-outline card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Khách hàng có đơn</h3>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Khách hàng</th>
+                                    <th class="text-right">Số đơn</th>
+                                    <th class="text-right">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (!Model.Customers.Any())
+                                {
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted">Không có khách nào trong ngày này.</td>
+                                    </tr>
+                                }
+                                @foreach (var row in Model.Customers)
+                                {
+                                    <tr>
+                                        <td>@row.CustomerName</td>
+                                        <td class="text-right">@row.OrderCount</td>
+                                        <td class="text-right">@row.TotalSpent.ToString("N0") đ</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

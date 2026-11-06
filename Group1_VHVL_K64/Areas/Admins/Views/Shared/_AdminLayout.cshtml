@@ -59,6 +59,13 @@
                                 <p>Quản lý sản phẩm</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a asp-area="Admins" asp-controller="Reports" asp-action="DailyRevenue"
+                               class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Reports" ? "active" : "")">
+                                <i class="nav-icon fas fa-chart-line"></i>
+                                <p>Báo cáo doanh thu (theo ngày)</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

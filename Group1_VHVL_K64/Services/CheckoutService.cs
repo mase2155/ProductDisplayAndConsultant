@@ -24,13 +24,16 @@ namespace Group1_VHVL_K64.Services
     {
         private readonly HoangHoanFurnitureContext _context;
         private readonly CustomerProfileService _customerProfileService;
+        private readonly OrderPersistenceService _orderPersistence;
 
         public CheckoutService(
             HoangHoanFurnitureContext context,
-            CustomerProfileService customerProfileService)
+            CustomerProfileService customerProfileService,
+            OrderPersistenceService orderPersistence)
         {
             _context = context;
             _customerProfileService = customerProfileService;
+            _orderPersistence = orderPersistence;
         }
 
         public async Task<CheckoutResult> PlaceOrderFromCartAsync(ClaimsPrincipal user, ISession session)
@@ -133,8 +136,7 @@ namespace Group1_VHVL_K64.Services
                 newOrder.OrderDetails.Add(detail);
             }
 
-            _context.Orders.Add(newOrder);
-            await _context.SaveChangesAsync();
+            await _orderPersistence.SaveNewOrderAsync(newOrder);
 
             SessionCartHelper.ClearCart(session);
 
@@ -142,7 +144,7 @@ namespace Group1_VHVL_K64.Services
             {
                 Success = true,
                 OrderId = newOrder.Id,
-                Message = "Đặt hàng thành công! Admin sẽ xử lý đơn của bạn."
+                Message = "Đặt hàng thành công! Mã đơn: #" + newOrder.OrderNumber + ". Admin sẽ xử lý đơn của bạn."
             };
         }
 

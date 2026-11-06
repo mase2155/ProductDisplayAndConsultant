@@ -5,6 +5,7 @@ IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Orders')
 BEGIN
     CREATE TABLE Orders (
         ID INT IDENTITY(1,1) PRIMARY KEY,
+        OrderNumber INT NOT NULL,
         CustomerID INT NOT NULL,
         OrderDate DATETIME NOT NULL DEFAULT GETDATE(),
         Status NVARCHAR(50) NOT NULL DEFAULT N'Pending',
@@ -12,7 +13,8 @@ BEGIN
         ShippingAddress NVARCHAR(500) NULL,
         Phone NVARCHAR(20) NULL,
         Note NVARCHAR(1000) NULL,
-        CONSTRAINT FK_Orders_Customers FOREIGN KEY (CustomerID) REFERENCES Customers(ID)
+        CONSTRAINT FK_Orders_Customers FOREIGN KEY (CustomerID) REFERENCES Customers(ID),
+        CONSTRAINT UX_Orders_OrderNumber UNIQUE (OrderNumber)
     );
 END
 

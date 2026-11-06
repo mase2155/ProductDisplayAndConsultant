@@ -1,6 +1,6 @@
 @model OrderFormModel
 @{
-    ViewData["Title"] = "Sửa đơn hàng #" + Model.Id;
+    ViewData["Title"] = "Sửa đơn hàng #" + Model.OrderNumber;
 }
 
 <div class="card card-warning">
@@ -11,6 +11,7 @@
         <div class="card-body">
             @Html.AntiForgeryToken()
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="OrderNumber" />
             <partial name="_OrderForm" model="Model" />
         </div>
         <div class="card-footer">

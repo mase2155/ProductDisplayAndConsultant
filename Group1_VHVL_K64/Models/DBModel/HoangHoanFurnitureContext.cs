@@ -146,6 +146,7 @@ public partial class HoangHoanFurnitureContext : DbContext
             entity.ToTable("Orders");
 
             entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.OrderNumber).HasColumnName("OrderNumber");
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.OrderDate).HasColumnType("datetime");
             entity.Property(e => e.Status).HasMaxLength(50);
@@ -157,6 +158,8 @@ public partial class HoangHoanFurnitureContext : DbContext
             entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.CustomerId)
                 .HasConstraintName("FK_Orders_Customers");
+
+            entity.HasIndex(e => e.OrderNumber, "UX_Orders_OrderNumber").IsUnique();
         });
 
         modelBuilder.Entity<OrderDetail>(entity =>

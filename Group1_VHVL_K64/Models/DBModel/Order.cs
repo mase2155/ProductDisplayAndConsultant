@@ -4,6 +4,9 @@ public partial class Order
 {
     public int Id { get; set; }
 
+    /// <summary>Số thứ tự đơn hiển thị cho người dùng (1, 2, 3...), không nhảy cóc khi Id identity nhảy.</summary>
+    public int OrderNumber { get; set; }
+
     public int CustomerId { get; set; }
 
     public DateTime OrderDate { get; set; }

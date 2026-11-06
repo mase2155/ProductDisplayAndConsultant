@@ -28,7 +28,7 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
         {
             List<Order> orders = await _context.Orders
                 .Include(o => o.Customer)
-                .OrderByDescending(o => o.OrderDate)
+                .OrderBy(o => o.Id)
                 .ToListAsync();
 
             return View(orders);

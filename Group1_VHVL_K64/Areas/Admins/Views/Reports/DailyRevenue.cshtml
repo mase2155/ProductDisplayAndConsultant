@@ -4,12 +4,8 @@
     string dateValue = Model.ReportDate.ToString("yyyy-MM-dd");
 }
 
-<div class="card card-primary">
-    <div class="card-header">
-        <h3 class="card-title">Báo cáo chi tiết doanh thu</h3>
-    </div>
+<div class="card card-primary">  
     <div class="card-body">
-        @* Chọn ngày và gửi GET sang Reports/DailyRevenue — chỉ đổi dữ liệu, không ghi DB. *@
         <form asp-action="DailyRevenue" method="get" class="form-inline mb-4">
             <label class="mr-2" for="reportDate">Ngày</label>
             <input type="date" id="reportDate" name="reportDate" class="form-control mr-2" value="@dateValue" />
@@ -17,12 +13,6 @@
                 <i class="fas fa-search"></i> Xem báo cáo
             </button>
         </form>
-
-        <p class="text-muted">
-            Hiển thị các đơn có <strong>ngày đặt</strong> trong khoảng từ 00:00 đến trước 24:00 (theo giờ máy chủ).
-            Đơn trạng thái <span class="badge badge-secondary">Cancelled</span> không tính vào doanh thu.
-        </p>
-
         <div class="alert alert-info">
             <strong>Tổng doanh thu ngày @Model.ReportDate.ToString("dd/MM/yyyy"):</strong>
             <span class="h5 mb-0 ml-2">@Model.TotalRevenue.ToString("N0") đ</span>
@@ -47,7 +37,7 @@
                                 @if (!Model.Products.Any())
                                 {
                                     <tr>
-                                        <td colspan="3" class="text-center text-muted">Không có bán hàng trong ngày này.</td>
+                                        <td colspan="3" class="text-center text-muted">Không có bán sản phẩm nào trong ngày này.</td>
                                     </tr>
                                 }
                                 @foreach (var row in Model.Products)

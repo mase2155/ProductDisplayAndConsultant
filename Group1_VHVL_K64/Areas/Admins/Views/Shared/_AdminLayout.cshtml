@@ -42,7 +42,7 @@
                             <a asp-area="Admins" asp-controller="Dashboard" asp-action="Index"
                                class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Bảng điều khiển</p>
+                                <p>Tổng quan </p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -63,7 +63,7 @@
                             <a asp-area="Admins" asp-controller="Reports" asp-action="DailyRevenue"
                                class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Reports" ? "active" : "")">
                                 <i class="nav-icon fas fa-chart-line"></i>
-                                <p>Báo cáo doanh thu (theo ngày)</p>
+                                <p>Báo cáo doanh thu </p>
                             </a>
                         </li>
                     </ul>

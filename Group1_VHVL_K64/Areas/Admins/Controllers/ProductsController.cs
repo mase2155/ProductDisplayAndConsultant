@@ -15,12 +15,22 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? categoryId)
         {
-            List<Product> products = await _context.Products
+            IQueryable<Product> query = _context.Products
                 .Include(p => p.Category)
+                .AsQueryable();
+
+            if (categoryId.HasValue && categoryId.Value > 0)
+            {
+                query = query.Where(p => p.CategoryId == categoryId.Value);
+            }
+
+            List<Product> products = await query
                 .OrderBy(p => p.Name)
                 .ToListAsync();
+
+            await FillCategoryFilterDropdownAsync(categoryId);
 
             return View(products);
         }
@@ -191,13 +201,37 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
 
         private async Task FillCategoryDropdownAsync(int? selectedCategoryId)
         {
+            await FillCategorySelectListAsync(
+                viewDataKey: "CategoryOptions",
+                emptyOptionText: "-- Chọn danh mục --",
+                selectedCategoryId: selectedCategoryId);
+        }
+
+        private async Task FillCategoryFilterDropdownAsync(int? selectedCategoryId)
+        {
+            await FillCategorySelectListAsync(
+                viewDataKey: "CategoryFilterOptions",
+                emptyOptionText: "Tất cả danh mục",
+                selectedCategoryId: selectedCategoryId);
+        }
+
+        private async Task FillCategorySelectListAsync(
+            string viewDataKey,
+            string emptyOptionText,
+            int? selectedCategoryId)
+        {
             List<Category> categories = await _context.Categories
                 .OrderBy(c => c.Name)
                 .ToListAsync();
 
             List<SelectListItem> items = new List<SelectListItem>
             {
-                new SelectListItem { Value = "", Text = "-- Chọn danh mục --", Selected = !selectedCategoryId.HasValue }
+                new SelectListItem
+                {
+                    Value = "",
+                    Text = emptyOptionText,
+                    Selected = !selectedCategoryId.HasValue
+                }
             };
 
             foreach (Category c in categories)
@@ -211,7 +245,7 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
                 });
             }
 
-            ViewBag.CategoryOptions = items;
+            ViewData[viewDataKey] = items;
         }
 
         private static AdminProductFormViewModel MapEntityToForm(Product product)

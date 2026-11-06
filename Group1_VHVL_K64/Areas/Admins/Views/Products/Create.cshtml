@@ -1,0 +1,24 @@
+@model Group1_VHVL_K64.Areas.Admins.Models.AdminProductFormViewModel
+@{
+    ViewData["Title"] = "Thêm sản phẩm";
+}
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Thêm sản phẩm mới</h3>
+    </div>
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div class="card-body">
+            <partial name="_Form" model="Model" />
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <a asp-action="Index" class="btn btn-default">Hủy</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,35 @@
+@model Product
+@{
+    ViewData["Title"] = "Xóa sản phẩm";
+    int orderLineCount = ViewBag.OrderLineCount != null ? (int)ViewBag.OrderLineCount : 0;
+}
+
+<div class="card card-danger">
+    <div class="card-header">
+        <h3 class="card-title">Xác nhận xóa sản phẩm</h3>
+    </div>
+    <div class="card-body">
+        <p>Bạn có chắc muốn xóa sản phẩm <strong>@Model.Name</strong> (#@Model.Id)?</p>
+        @if (orderLineCount > 0)
+        {
+            <div class="alert alert-warning">
+                Sản phẩm này đã xuất hiện trong <strong>@orderLineCount</strong> dòng đơn hàng. Hệ thống không cho xóa để tránh mất dữ liệu lịch sử.
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+    </div>
+    <div class="card-footer">
+        @if (orderLineCount == 0)
+        {
+            <form asp-action="Delete" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@Model.Id" />
+                <button type="submit" class="btn btn-danger">Xóa</button>
+            </form>
+        }
+        <a asp-action="Index" class="btn btn-default">Quay lại danh sách</a>
+    </div>
+</div>

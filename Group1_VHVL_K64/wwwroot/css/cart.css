@@ -180,6 +180,29 @@
         color: #fff;
     }
 
+    .qty-btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+    }
+
+    .qty-btn:disabled:hover {
+        background: #fafafa;
+        color: #2c2e53;
+    }
+
+.qty-display {
+    min-width: 40px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gotham-Medium', sans-serif;
+    color: #2c2e53;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    background: #fff;
+}
+
 .qty-input {
     width: 48px;
     height: 36px;

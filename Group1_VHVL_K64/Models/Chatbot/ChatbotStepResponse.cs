@@ -1,7 +1,7 @@
 namespace Group1_VHVL_K64.Models.Chatbot
 {
     /// <summary>
-    /// Dữ liệu một bước hội thoại bot trả về cho JavaScript (chỉ chọn bằng nút).
+    /// Dữ liệu một bước hội thoại bot (hiển thị Razor /Chatbot/Frame, chọn bằng nút).
     /// </summary>
     public class ChatbotStepResponse
     {

@@ -49,9 +49,13 @@
                                 <div class="product-image-wrapper">
                                     <img src="@item.Urlimage" alt="@item.Name" class="img-fluid">
                                     <div class="product-overlay">
-                                        <button type="button" class="overlay-btn btn-add-to-cart" data-id="@item.Id" title="Thêm vào giỏ hàng">
-                                            <i class="fa-solid fa-cart-shopping"></i>
-                                        </button>
+                                        <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="productId" value="@item.Id" />
+                                            <button type="submit" class="overlay-btn" title="Thêm vào giỏ hàng">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                                 
@@ -75,5 +79,4 @@
 }
 @section Scripts {
     <script src="~/js/transferBanner_product.js"></script>
-    <script src="~/js/addCard.js"></script>
 }

@@ -6,6 +6,7 @@ using Group1_VHVL_K64.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Primitives;
 
 namespace Group1_VHVL_K64.Controllers
 {
@@ -32,6 +33,7 @@ namespace Group1_VHVL_K64.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddToCart(int productId)
         {
             Product? product = await _context.Products
@@ -39,7 +41,8 @@ namespace Group1_VHVL_K64.Controllers
 
             if (product == null)
             {
-                return Json(new { success = false, message = "Không tìm thấy sản phẩm!" });
+                TempData["CartErrorMessage"] = "Không tìm thấy sản phẩm!";
+                return RedirectBackOrProduct();
             }
 
             List<CartSessionItem> cartItems = SessionCartHelper.GetCartItems(HttpContext.Session);
@@ -60,22 +63,23 @@ namespace Group1_VHVL_K64.Controllers
 
             SessionCartHelper.SaveCartItems(HttpContext.Session, cartItems);
 
-            int totalCartItems = SessionCartHelper.GetTotalQuantity(HttpContext.Session);
-
-            return Json(new
-            {
-                success = true,
-                message = "Thêm sản phẩm vào giỏ hàng thành công!",
-                totalCartItems = totalCartItems
-            });
+            TempData["CartSuccessMessage"] = "Thêm sản phẩm vào giỏ hàng thành công!";
+            return RedirectBackOrProduct();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateQuantity(int productId, int quantity)
         {
             if (quantity < 1)
             {
-                return Json(new { success = false, message = "Số lượng tối thiểu là 1." });
+                TempData["CartErrorMessage"] = "Số lượng tối thiểu là 1.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (quantity > 99)
+            {
+                quantity = 99;
             }
 
             List<CartSessionItem> cartItems = SessionCartHelper.GetCartItems(HttpContext.Session);
@@ -83,26 +87,18 @@ namespace Group1_VHVL_K64.Controllers
 
             if (line == null)
             {
-                return Json(new { success = false, message = "Sản phẩm không có trong giỏ hàng." });
+                TempData["CartErrorMessage"] = "Sản phẩm không có trong giỏ hàng.";
+                return RedirectToAction(nameof(Index));
             }
 
             line.Quantity = quantity;
             SessionCartHelper.SaveCartItems(HttpContext.Session, cartItems);
 
-            List<CartLineDisplay> cartLines = await BuildCartLinesFromSessionAsync();
-            CartLineDisplay? updatedLine = cartLines.FirstOrDefault(c => c.ProductId == productId);
-            decimal grandTotal = CalculateGrandTotal(cartLines);
-
-            return Json(new
-            {
-                success = true,
-                lineTotal = updatedLine?.LineTotal ?? 0,
-                grandTotal = grandTotal,
-                totalCartItems = SessionCartHelper.GetTotalQuantity(HttpContext.Session)
-            });
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveFromCart(int productId)
         {
             List<CartSessionItem> cartItems = SessionCartHelper.GetCartItems(HttpContext.Session);
@@ -110,36 +106,25 @@ namespace Group1_VHVL_K64.Controllers
 
             if (line == null)
             {
-                return Json(new { success = false, message = "Sản phẩm không có trong giỏ hàng." });
+                TempData["CartErrorMessage"] = "Sản phẩm không có trong giỏ hàng.";
+                return RedirectToAction(nameof(Index));
             }
 
             cartItems.Remove(line);
             SessionCartHelper.SaveCartItems(HttpContext.Session, cartItems);
 
-            List<CartLineDisplay> cartLines = await BuildCartLinesFromSessionAsync();
-            decimal grandTotal = CalculateGrandTotal(cartLines);
-
-            return Json(new
-            {
-                success = true,
-                message = "Đã xóa sản phẩm khỏi giỏ hàng.",
-                grandTotal = grandTotal,
-                totalCartItems = SessionCartHelper.GetTotalQuantity(HttpContext.Session),
-                isEmpty = cartItems.Count == 0
-            });
+            TempData["CartSuccessMessage"] = "Đã xóa sản phẩm khỏi giỏ hàng.";
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult ClearCart()
         {
             SessionCartHelper.ClearCart(HttpContext.Session);
 
-            return Json(new
-            {
-                success = true,
-                message = "Đã xóa toàn bộ sản phẩm trong giỏ hàng.",
-                totalCartItems = 0
-            });
+            TempData["CartSuccessMessage"] = "Đã xóa toàn bộ sản phẩm trong giỏ hàng.";
+            return RedirectToAction(nameof(Index));
         }
 
         /// <summary>
@@ -196,6 +181,27 @@ namespace Group1_VHVL_K64.Controllers
             return View(order);
         }
 
+        private IActionResult RedirectBackOrProduct()
+        {
+            if (Request.Headers.TryGetValue("Referer", out StringValues refererValues))
+            {
+                string referer = refererValues.ToString();
+                if (!string.IsNullOrEmpty(referer) && Uri.TryCreate(referer, UriKind.Absolute, out Uri? uri))
+                {
+                    if (string.Equals(uri.Host, Request.Host.Host, StringComparison.OrdinalIgnoreCase))
+                    {
+                        string pathAndQuery = uri.PathAndQuery;
+                        if (!string.IsNullOrEmpty(pathAndQuery) && pathAndQuery.StartsWith('/'))
+                        {
+                            return LocalRedirect(pathAndQuery);
+                        }
+                    }
+                }
+            }
+
+            return RedirectToAction("Index", "Product");
+        }
+
         private async Task<List<CartLineDisplay>> BuildCartLinesFromSessionAsync()
         {
             List<CartSessionItem> cartItems = SessionCartHelper.GetCartItems(HttpContext.Session);
@@ -233,18 +239,6 @@ namespace Group1_VHVL_K64.Controllers
             }
 
             return result;
-        }
-
-        private static decimal CalculateGrandTotal(List<CartLineDisplay> lines)
-        {
-            decimal total = 0;
-
-            foreach (CartLineDisplay line in lines)
-            {
-                total += line.LineTotal;
-            }
-
-            return total;
         }
     }
 }

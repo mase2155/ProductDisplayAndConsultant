@@ -20,6 +20,14 @@
 
 <section id="cart-page">
     <div class="container">
+        @if (TempData["CartErrorMessage"] != null)
+        {
+            <div class="alert alert-danger mb-4">@TempData["CartErrorMessage"]</div>
+        }
+        @if (TempData["CartSuccessMessage"] != null)
+        {
+            <div class="alert alert-success mb-4">@TempData["CartSuccessMessage"]</div>
+        }
         @if (TempData["ErrorMessage"] != null)
         {
             <div class="alert alert-danger mb-4">@TempData["ErrorMessage"]</div>
@@ -47,9 +55,13 @@
             <div class="row g-4">
                 <div class="col-lg-8">
                     <div class="cart-panel-toolbar">
-                        <button type="button" class="btn-clear-all-cart">
-                            <i class="fa-regular fa-trash-can"></i> Xóa toàn bộ giỏ hàng
-                        </button>
+                        <form asp-controller="Cart" asp-action="ClearCart" method="post" class="d-inline"
+                              onsubmit="return confirm('Bạn có chắc muốn xóa toàn bộ sản phẩm trong giỏ hàng?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn-clear-all-cart">
+                                <i class="fa-regular fa-trash-can"></i> Xóa toàn bộ giỏ hàng
+                            </button>
+                        </form>
                     </div>
                     <div class="cart-panel">
                         <div class="cart-panel-head d-none d-md-grid">
@@ -68,11 +80,14 @@
                                     </div>
                                     <div class="cart-product-info">
                                         <h3>@item.Name</h3>
-                                        <button type="button"
-                                                class="btn-cart-remove btn-remove-from-cart"
-                                                data-id="@item.ProductId">
-                                            <i class="fa-regular fa-trash-can"></i> Xóa
-                                        </button>
+                                        <form asp-controller="Cart" asp-action="RemoveFromCart" method="post" class="d-inline"
+                                              onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?');">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                            <button type="submit" class="btn-cart-remove">
+                                                <i class="fa-regular fa-trash-can"></i> Xóa
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
 
@@ -81,27 +96,21 @@
                                 </div>
 
                                 <div class="cart-quantity" data-label="Số lượng">
-                                    <div class="qty-control">
-                                        <button type="button"
-                                                class="qty-btn btn-qty-minus"
-                                                data-id="@item.ProductId"
-                                                aria-label="Giảm số lượng">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </button>
-                                        <input type="number"
-                                               class="qty-input"
-                                               value="@item.Quantity"
-                                               min="1"
-                                               max="99"
-                                               data-id="@item.ProductId"
-                                               aria-label="Số lượng @item.Name">
-                                        <button type="button"
-                                                class="qty-btn btn-qty-plus"
-                                                data-id="@item.ProductId"
-                                                aria-label="Tăng số lượng">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                    </div>
+                                    <form asp-controller="Cart" asp-action="UpdateQuantity" method="post" class="qty-control-form">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="productId" value="@item.ProductId" />
+                                        <div class="qty-control">
+                                            <button type="submit" name="quantity" value="@(item.Quantity - 1)" class="qty-btn"
+                                                    @(item.Quantity <= 1 ? "disabled" : null) aria-label="Giảm số lượng">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </button>
+                                            <span class="qty-display">@item.Quantity</span>
+                                            <button type="submit" name="quantity" value="@(item.Quantity + 1)" class="qty-btn"
+                                                    @(item.Quantity >= 99 ? "disabled" : null) aria-label="Tăng số lượng">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
 
                                 <div class="cart-line-total text-end" data-label="Thành tiền">
@@ -174,7 +183,6 @@
 }
 
 @section Scripts {
-    <script src="~/js/cart.js" asp-append-version="true"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var totalItems = @totalItems;

@@ -66,7 +66,7 @@
                         <div class="icon icon-cart">
                             <a asp-area="" asp-action="Index" asp-controller="Cart" class="cart-link-header">
                                 <i class="fa-solid fa-cart-shopping"></i>
-                                <span class="cart-count-badge" style="display: none;">0</span>
+                                @await Component.InvokeAsync("CartBadge")
                             </a>
                         </div>
                         <div class="user-login-icon">

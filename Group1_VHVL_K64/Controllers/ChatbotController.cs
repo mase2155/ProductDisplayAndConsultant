@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Group1_VHVL_K64.Controllers
 {
+    /// <summary>
+    /// Trợ lý tư vấn: chỉ trả Razor View (không trả Json), tải trong iframe widget.
+    /// </summary>
     public class ChatbotController : Controller
     {
         private readonly HoangHoanFurnitureContext _context;
@@ -15,10 +18,30 @@ namespace Group1_VHVL_K64.Controllers
         }
 
         /// <summary>
-        /// Bước 1: chào và liệt kê danh mục (Category).
+        /// Khung nội dung chatbot (GET — luồng welcome / category / product).
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Welcome()
+        public async Task<IActionResult> Frame(string step = "welcome", int id = 0)
+        {
+            ChatbotStepResponse model;
+
+            if (step == "category")
+            {
+                model = await BuildCategoryStepAsync(id);
+            }
+            else if (step == "product")
+            {
+                model = await BuildProductStepAsync(id);
+            }
+            else
+            {
+                model = await BuildWelcomeStepAsync();
+            }
+
+            return View("Frame", model);
+        }
+
+        private async Task<ChatbotStepResponse> BuildWelcomeStepAsync()
         {
             List<Category> categories = await _context.Categories
                 .OrderBy(c => c.Name)
@@ -44,22 +67,18 @@ namespace Group1_VHVL_K64.Controllers
                 response.BotMessage = "Hiện chưa có danh mục sản phẩm. Anh/chị vui lòng xem trang Sản phẩm hoặc liên hệ shop.";
             }
 
-            return Json(response);
+            return response;
         }
 
-        /// <summary>
-        /// Bước 2: chọn sản phẩm trong một danh mục.
-        /// </summary>
-        [HttpGet]
-        public async Task<IActionResult> Category(int id)
+        private async Task<ChatbotStepResponse> BuildCategoryStepAsync(int categoryId)
         {
             Category? category = await _context.Categories
                 .Include(c => c.Products)
-                .FirstOrDefaultAsync(c => c.Id == id);
+                .FirstOrDefaultAsync(c => c.Id == categoryId);
 
             if (category == null)
             {
-                return Json(CreateErrorStep("Không tìm thấy danh mục này."));
+                return CreateErrorStep("Không tìm thấy danh mục này.");
             }
 
             ChatbotStepResponse response = new ChatbotStepResponse
@@ -89,22 +108,18 @@ namespace Group1_VHVL_K64.Controllers
                 TargetId = 0
             });
 
-            return Json(response);
+            return response;
         }
 
-        /// <summary>
-        /// Bước 3: hiển thị thông số chi tiết sản phẩm.
-        /// </summary>
-        [HttpGet]
-        public async Task<IActionResult> Product(int id)
+        private async Task<ChatbotStepResponse> BuildProductStepAsync(int productId)
         {
             Product? product = await _context.Products
                 .Include(p => p.Category)
-                .FirstOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == productId);
 
             if (product == null)
             {
-                return Json(CreateErrorStep("Không tìm thấy sản phẩm này."));
+                return CreateErrorStep("Không tìm thấy sản phẩm này.");
             }
 
             decimal displayPrice = product.NewPrice ?? product.Price;
@@ -147,7 +162,7 @@ namespace Group1_VHVL_K64.Controllers
                 TargetId = 0
             });
 
-            return Json(response);
+            return response;
         }
 
         private static ChatbotStepResponse CreateErrorStep(string message)

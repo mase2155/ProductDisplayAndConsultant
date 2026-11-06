@@ -113,7 +113,8 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             _context.Orders.Add(newOrder);
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Tạo đơn hàng thành công.";
+            // Sau SaveChanges, EF gán Id identity từ CSDL — dùng đúng mã đơn vừa tạo (ví dụ đơn cũ cao nhất là 2 thì Id mới là 3).
+            TempData["SuccessMessage"] = $"Tạo đơn hàng thành công. Mã đơn: #{newOrder.Id}.";
             return RedirectToAction(nameof(Index));
         }
 

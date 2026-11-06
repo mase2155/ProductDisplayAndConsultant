@@ -27,7 +27,7 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             }
 
             List<Product> products = await query
-                .OrderBy(p => p.Name)
+                .OrderBy(p => p.Id)
                 .ToListAsync();
 
             await FillCategoryFilterDropdownAsync(categoryId);

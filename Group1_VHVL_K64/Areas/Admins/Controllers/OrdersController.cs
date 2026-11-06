@@ -1,5 +1,6 @@
 using Group1_VHVL_K64.Areas.Admins.Models;
 using Group1_VHVL_K64.Models.DBModel;
+using Group1_VHVL_K64.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
     public class OrdersController : AdminBaseController
     {
         private readonly HoangHoanFurnitureContext _context;
+        private readonly OrderPersistenceService _orderPersistence;
 
         private static readonly string[] OrderStatusList =
         {
@@ -20,9 +22,10 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             "Cancelled"
         };
 
-        public OrdersController(HoangHoanFurnitureContext context)
+        public OrdersController(HoangHoanFurnitureContext context, OrderPersistenceService orderPersistence)
         {
             _context = context;
+            _orderPersistence = orderPersistence;
         }
 
         public async Task<IActionResult> Index()
@@ -110,11 +113,10 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
                 newOrder.OrderDetails.Add(detail);
             }
 
-            _context.Orders.Add(newOrder);
-            await _context.SaveChangesAsync();
+            await _orderPersistence.SaveNewOrderAsync(newOrder);
 
-            // Sau SaveChanges, EF gán Id identity từ CSDL — dùng đúng mã đơn vừa tạo (ví dụ đơn cũ cao nhất là 2 thì Id mới là 3).
-            TempData["SuccessMessage"] = $"Tạo đơn hàng thành công. Mã đơn: #{newOrder.Id}.";
+            // OrderNumber là số thứ tự liên tục (1,2,3…); Id là khóa PK có thể nhảy cóc do identity/SQL Server.
+            TempData["SuccessMessage"] = $"Tạo đơn hàng thành công. Mã đơn: #{newOrder.OrderNumber}.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -185,6 +187,7 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             }
 
             order.CustomerId = formModel.CustomerId;
+            order.OrderNumber = formModel.OrderNumber;
             order.OrderDate = formModel.OrderDate;
             order.Status = formModel.Status;
             order.ShippingAddress = formModel.ShippingAddress;
@@ -244,6 +247,7 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             {
                 CustomerSelectionMode = OrderFormModel.CustomerModeExisting,
                 CustomerId = 0,
+                OrderNumber = 0,
                 OrderDate = DateTime.Now,
                 Status = "Pending"
             };
@@ -261,6 +265,7 @@ namespace Group1_VHVL_K64.Areas.Admins.Controllers
             OrderFormModel formModel = new OrderFormModel
             {
                 Id = order.Id,
+                OrderNumber = order.OrderNumber,
                 CustomerSelectionMode = OrderFormModel.CustomerModeExisting,
                 CustomerId = order.CustomerId,
                 OrderDate = order.OrderDate,

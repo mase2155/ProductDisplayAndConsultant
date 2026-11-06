@@ -5,7 +5,6 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Đơn hàng khách hàng</h3>
         <div class="card-tools">
             <a asp-action="Create" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i> Thêm đơn hàng
@@ -34,7 +33,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>#@item.Id</td>
+                        <td>#@item.OrderNumber</td>
                         <td>@item.Customer?.Fullname</td>
                         <td>@item.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
                         <td><span class="badge badge-info">@item.Status</span></td>

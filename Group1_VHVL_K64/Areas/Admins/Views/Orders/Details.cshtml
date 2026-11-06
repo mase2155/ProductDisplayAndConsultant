@@ -1,6 +1,6 @@
 @model Order
 @{
-    ViewData["Title"] = "Chi tiết đơn hàng #" + Model.Id;
+    ViewData["Title"] = "Chi tiết đơn hàng #" + Model.OrderNumber;
 }
 
 <div class="row">
@@ -11,6 +11,9 @@
             </div>
             <div class="card-body">
                 <dl class="row">
+                    <dt class="col-sm-4">Mã đơn</dt>
+                    <dd class="col-sm-8"><strong>#@Model.OrderNumber</strong> <span class="text-muted small">(ID kỹ thuật: @Model.Id)</span></dd>
+
                     <dt class="col-sm-4">Khách hàng</dt>
                     <dd class="col-sm-8">@Model.Customer?.Fullname (@Model.Customer?.Email)</dd>
 

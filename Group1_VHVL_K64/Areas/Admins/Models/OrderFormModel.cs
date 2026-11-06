@@ -15,6 +15,9 @@ namespace Group1_VHVL_K64.Areas.Admins.Models
 
         public int Id { get; set; }
 
+        /// <summary>Số đơn hiển thị (1, 2, 3…); chỉ đọc/ghi khi sửa để giữ nguyên.</summary>
+        public int OrderNumber { get; set; }
+
         [Display(Name = "Cách chọn khách hàng")]
         public string CustomerSelectionMode { get; set; } = CustomerModeExisting;
 

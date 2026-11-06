@@ -30,6 +30,7 @@ namespace Group1_VHVL_K64
             builder.Services.AddScoped<AccountAuthService>();
             builder.Services.AddScoped<CustomerProfileService>();
             builder.Services.AddScoped<CheckoutService>();
+            builder.Services.AddScoped<OrderPersistenceService>();
             builder.Services.AddScoped<ContactService>();
 
             builder.Services.AddControllersWithViews();

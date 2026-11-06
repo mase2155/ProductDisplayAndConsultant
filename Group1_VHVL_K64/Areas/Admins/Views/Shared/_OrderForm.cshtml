@@ -5,11 +5,66 @@
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+@* Bước 1: Admin chọn gán đơn cho khách đã có (dropdown) hoặc nhập khách walk-in mới (tên + tùy chọn email/SĐT). *@
 <div class="form-group">
+    <label class="d-block">Khách hàng</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" asp-for="CustomerSelectionMode" value="@OrderFormModel.CustomerModeExisting" id="modeExisting" />
+        <label class="form-check-label" for="modeExisting">Chọn khách đã có</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" asp-for="CustomerSelectionMode" value="@OrderFormModel.CustomerModeNew" id="modeNew" />
+        <label class="form-check-label" for="modeNew">Khách mới (nhập tay)</label>
+    </div>
+    <span asp-validation-for="CustomerSelectionMode" class="text-danger d-block"></span>
+</div>
+
+<div id="blockExistingCustomer" class="form-group">
     <label asp-for="CustomerId"></label>
-    <select asp-for="CustomerId" asp-items="ViewBag.CustomerId" class="form-control"></select>
+    <select asp-for="CustomerId" asp-items="ViewBag.CustomerId" class="form-control">
+        <option value="0">-- Chọn khách hàng --</option>
+    </select>
     <span asp-validation-for="CustomerId" class="text-danger"></span>
 </div>
+
+<div id="blockNewCustomer" class="form-group border rounded p-3 bg-light" style="display:none;">
+    <p class="text-muted small mb-2">Dùng khi đơn offline / khách chưa có tài khoản. Hệ thống sẽ tạo một bản ghi khách để gắn với đơn hàng.</p>
+    <div class="form-group">
+        <label asp-for="NewCustomerFullName"></label>
+        <input asp-for="NewCustomerFullName" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" />
+        <span asp-validation-for="NewCustomerFullName" class="text-danger"></span>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label asp-for="NewCustomerEmail"></label>
+            <input asp-for="NewCustomerEmail" class="form-control" placeholder="Để trống nếu không có" />
+            <span asp-validation-for="NewCustomerEmail" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 form-group">
+            <label asp-for="NewCustomerPhone"></label>
+            <input asp-for="NewCustomerPhone" class="form-control" placeholder="Tùy chọn" />
+            <span asp-validation-for="NewCustomerPhone" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        function toggleCustomerBlocks() {
+            var existing = document.getElementById('modeExisting');
+            var blockExisting = document.getElementById('blockExistingCustomer');
+            var blockNew = document.getElementById('blockNewCustomer');
+            if (!existing || !blockExisting || !blockNew) return;
+            var isExisting = existing.checked;
+            blockExisting.style.display = isExisting ? '' : 'none';
+            blockNew.style.display = isExisting ? 'none' : '';
+        }
+        document.querySelectorAll('input[name="CustomerSelectionMode"]').forEach(function (el) {
+            el.addEventListener('change', toggleCustomerBlocks);
+        });
+        toggleCustomerBlocks();
+    })();
+</script>
 
 <div class="row">
     <div class="col-md-6 form-group">

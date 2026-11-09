@@ -73,3 +73,8 @@ namespace Group1_VHVL_K64
         }
     }
 }
+
+// Cho integration test (WebApplicationFactory) tham chiếu lớp Program.
+public partial class Program
+{
+}

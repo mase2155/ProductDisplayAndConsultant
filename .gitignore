@@ -1,0 +1,70 @@
+# File và thư mục không đưa lên Git.
+# Git chỉ cần mã nguồn; các mục dưới đây do máy local hoặc công cụ tạo ra.
+
+# --- Cursor (cấu hình AI trên máy local) ---
+.cursor/
+.cursorrules
+
+# --- Kết quả build ASP.NET / .NET ---
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Ll]og/
+[Ll]ogs/
+*.log
+
+# Thư mục publish khi deploy
+publish/
+*.pubxml.user
+
+# Kết quả chạy test
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+
+# --- Visual Studio / Rider (file cá nhân, cache) ---
+.vs/
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+.idea/
+*.DotSettings.user
+
+# File scaffold tạm của Visual Studio
+ScaffoldingReadMe.txt
+
+# --- NuGet ---
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# --- Hệ điều hành ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# --- Bí mật / cấu hình local (không commit) ---
+*.env
+.env
+.env.*
+secrets.json
+appsettings.*.local.json

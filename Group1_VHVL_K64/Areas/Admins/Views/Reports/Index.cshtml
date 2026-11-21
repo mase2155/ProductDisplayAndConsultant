@@ -1,0 +1,37 @@
+@model WeeklyRevenueReportViewModel
+@{
+    ViewData["Title"] = "Báo cáo doanh thu theo tuần";
+    ViewData["HideContentHeader"] = true;
+}
+
+<h2 class="h5 mb-3">Báo cáo doanh thu theo tuần</h2>
+<p class="mb-2">@Model.PeriodLabel — @Model.RangeDisplay</p>
+
+<form asp-action="Index" method="get" class="mb-3">
+    <label for="weekYear">Năm (ISO)</label>
+    <input type="number" id="weekYear" name="weekYear" class="form-control form-control-sm d-inline-block mx-1" style="width:5.5rem"
+           min="2000" max="2100" value="@Model.Year" required />
+    <label for="week" class="ml-2">Tuần</label>
+    <input type="number" id="week" name="week" class="form-control form-control-sm d-inline-block mx-1" style="width:4rem"
+           min="1" max="53" value="@Model.Week" required />
+    <button type="submit" class="btn btn-sm btn-secondary ml-2">Xem</button>
+</form>
+
+<table class="table table-sm table-bordered mb-2" style="max-width:28rem">
+    <tbody>
+        <tr>
+            <th scope="row">Tổng doanh thu</th>
+            <td class="text-right">@Model.TotalRevenue.ToString("N0") đ</td>
+        </tr>
+        <tr>
+            <th scope="row">Tổng số đơn (không hủy)</th>
+            <td class="text-right">@Model.TotalOrderCount</td>
+        </tr>
+        <tr>
+            <th scope="row">Trung bình đơn / ngày (7 ngày)</th>
+            <td class="text-right">@Model.AverageOrdersPerDay.ToString("0.##")</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="small text-muted mb-0">Tuần ISO (bắt đầu thứ Hai). Không tính đơn Cancelled.</p>

@@ -267,16 +267,15 @@
 
 ---
 
-## 14. ReportsController + DailyRevenueReportViewModel
+## 14. ReportsController — báo cáo doanh thu theo tuần ISO
 
 | ID | Test | Mong đợi |
 |----|------|----------|
-| ADM-RPT-01 | DailyRevenue không query | Ngày hôm nay |
-| ADM-RPT-02 | `?reportDate=yyyy-MM-dd` | Đúng ngày chọn |
-| ADM-RPT-03 | Đơn Cancelled cùng ngày | **Không** tính vào TotalRevenue |
-| ADM-RPT-04 | Bảng sản phẩm | Gom theo ProductName, sort LineTotal |
-| ADM-RPT-05 | Bảng khách | OrderCount, TotalSpent |
-| ADM-RPT-06 | Ngày không có đơn | Revenue = 0, list rỗng |
+| ADM-RPT-01 | `/Admins/Reports` không query | Tuần ISO hiện tại |
+| ADM-RPT-02 | `?weekYear=&week=` | Tổng doanh thu + số đơn tuần đúng |
+| ADM-RPT-03 | Đơn Cancelled | **Không** tính |
+| ADM-RPT-04 | Trung bình đơn/ngày | = tổng đơn ÷ 7 |
+| ADM-RPT-05 | Tuần không có đơn | Revenue = 0, đếm = 0 |
 
 ---
 

@@ -23,7 +23,7 @@ public class AdminRouteSmokeTests : IClassFixture<CustomWebApplicationFactory>
     [InlineData("/Admins/Dashboard")]
     [InlineData("/Admins/Products")]
     [InlineData("/Admins/Orders")]
-    [InlineData("/Admins/Reports/DailyRevenue")]
+    [InlineData("/Admins/Reports")]
     public async Task GetAdminPage_WhenNotLoggedIn_ThenRedirectsToLogin(string url)
     {
         HttpResponseMessage response = await _httpClient.GetAsync(url);
